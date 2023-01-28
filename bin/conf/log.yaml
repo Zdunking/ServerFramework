@@ -1,0 +1,74 @@
+#logs:
+#  - name: root
+#    level: info
+#    formatter: "%d%T%m%n"
+#    appender:
+#      - type: FileAppender
+#        path: test.log
+#      - type: StdoutAppender
+#  - name: system
+#    level: debug
+#    formatter: "%d%T%m%n"
+#    appender:
+#      - type: FileAppender
+#        path: test.log
+#      - type: StdoutAppender
+
+system:
+  port: 9900
+  value: 15
+  int_vec: 
+    - 10
+    - 30
+  int_list:
+    - 10
+    - 30
+    - 50
+  int_set:
+    - 10
+    - 30
+    - 50
+  int_uset:
+    - 30
+    - 20
+    - 60
+    - 20
+  str_int_map:
+    k: 30
+    k2: 20
+    k3: 10
+  str_int_umap:
+    k: 30
+    k2: 20
+    k3: 10
+  
+class:
+  person:
+    name: zdunk
+    age: 24
+    sex: true
+  map:
+    zdunk01:
+      name: zdunk01
+      age: 18
+      sex: false
+    zdunk02:
+      name: zdunk02
+      age: 24
+      sex: true
+  vec_map:
+    k1:
+      - name: m11
+        age: 33
+        sex: true
+      - name: m12
+        age: 44
+        sex: false
+    k2:
+      - name: m21
+        age: 33
+        sex: true
+      - name: m22
+        age: 44
+        sex: false
+      

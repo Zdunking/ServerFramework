@@ -1,0 +1,1 @@
+/apps/stone/bin/g++ -fPIC  -rdynamic -O0 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g  -shared -Wl,-soname,libzdunk.so -o ../lib/libzdunk.so CMakeFiles/zdunk.dir/zdunk/log.cc.o CMakeFiles/zdunk.dir/zdunk/utils.cc.o CMakeFiles/zdunk.dir/zdunk/config.cc.o 

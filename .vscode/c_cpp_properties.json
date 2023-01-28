@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/apps/stone/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0",
+                "/apps/stone/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0/x86_64-pc-linux-gnu",
+                "/apps/stone/lib/gcc/x86_64-pc-linux-gnu/9.1.0/../../../../include/c++/9.1.0/backward",
+                "/apps/stone/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include",
+                "/usr/local/include",
+                "/apps/stone/include",
+                "/apps/stone/lib/gcc/x86_64-pc-linux-gnu/9.1.0/include-fixed",
+                "/usr/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c89",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}
