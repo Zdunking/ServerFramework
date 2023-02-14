@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/zdunk/workspace/zdunking/zdunk/config.cc
-config.h
-/home/zdunk/workspace/zdunking/zdunk/config.h
-
 /home/zdunk/workspace/zdunking/zdunk/config.h
 memory
 -
@@ -27,6 +23,24 @@ yaml-cpp/yaml.h
 -
 log.h
 /home/zdunk/workspace/zdunking/zdunk/log.h
+
+/home/zdunk/workspace/zdunking/zdunk/log.cc
+log.h
+/home/zdunk/workspace/zdunking/zdunk/log.h
+iostream
+-
+map
+-
+functional
+-
+time.h
+-
+string.h
+-
+stdarg.h
+-
+config.h
+/home/zdunk/workspace/zdunking/zdunk/config.h
 
 /home/zdunk/workspace/zdunking/zdunk/log.h
 string

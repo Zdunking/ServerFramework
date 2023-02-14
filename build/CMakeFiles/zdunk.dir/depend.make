@@ -7,6 +7,7 @@ CMakeFiles/zdunk.dir/zdunk/config.cc.o: ../zdunk/log.h
 CMakeFiles/zdunk.dir/zdunk/config.cc.o: ../zdunk/singleton.h
 CMakeFiles/zdunk.dir/zdunk/config.cc.o: ../zdunk/utils.h
 
+CMakeFiles/zdunk.dir/zdunk/log.cc.o: ../zdunk/config.h
 CMakeFiles/zdunk.dir/zdunk/log.cc.o: ../zdunk/log.cc
 CMakeFiles/zdunk.dir/zdunk/log.cc.o: ../zdunk/log.h
 CMakeFiles/zdunk.dir/zdunk/log.cc.o: ../zdunk/singleton.h

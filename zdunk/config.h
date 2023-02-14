@@ -362,8 +362,8 @@ namespace zdunk
         template <class T>
         static typename ConfigVar<T>::ptr Lookup(const std::string &name, const T &default_name, const std::string &description = "")
         {
-            auto it = s_datas.find(name);
-            if (it != s_datas.end())
+            auto it = GetDatas().find(name);
+            if (it != GetDatas().end())
             {
                 auto tmp = std::dynamic_pointer_cast<ConfigVar<T>>(it->second);
                 if (tmp)
@@ -383,15 +383,15 @@ namespace zdunk
                 throw std::invalid_argument(name);
             }
             typename ConfigVar<T>::ptr v(new ConfigVar<T>(name, default_name, description));
-            s_datas[name] = v;
+            GetDatas()[name] = v;
             return v;
         }
 
         template <class T>
         static typename ConfigVar<T>::ptr Lookup(const std::string name)
         {
-            auto it = s_datas.find(name);
-            if (it == s_datas.end())
+            auto it = GetDatas().find(name);
+            if (it == GetDatas().end())
             {
                 return nullptr;
             }
@@ -403,7 +403,11 @@ namespace zdunk
         static ConfigVarBase::ptr LookupBase(const std::string &name);
 
     private:
-        static ConfigVarMap s_datas;
+        static ConfigVarMap &GetDatas()
+        {
+            static ConfigVarMap s_datas;
+            return s_datas;
+        }
     };
 
 }

@@ -40,11 +40,13 @@
 #define WRITELOG_FATAL(logger, fmt, ...) LOG_FMT_LEVEL(logger, zdunk::LogLevel::Level::FATAL, fmt, __VA_ARGS__)
 
 #define LOG_ROOT() zdunk::loggerMgr::GetInstance()->getRoot()
+#define LOG_NAME(name) zdunk::loggerMgr::GetInstance()->getLogger(name)
 
 namespace zdunk
 {
 
     class Logger;
+    class LoggerManager;
 
     // 日志级别
     class LogLevel
@@ -61,6 +63,7 @@ namespace zdunk
         };
         typedef std::shared_ptr<LogLevel> ptr;
         static const char *ToString(LogLevel::Level level);
+        static LogLevel::Level FromString(const std::string &str);
     };
 
     // 日志事件
@@ -140,9 +143,13 @@ namespace zdunk
 
         void init();
 
+        bool isError() const { return m_error; }
+
     private:
         std::vector<FormatItem::ptr> m_items;
         std::string m_pattern;
+
+        bool m_error = false;
     };
 
     // 日志输出地
@@ -168,6 +175,8 @@ namespace zdunk
     // 日志器
     class Logger : public std::enable_shared_from_this<Logger>
     {
+        friend class LoggerManager;
+
     public:
         typedef std::shared_ptr<Logger> ptr;
         Logger(const std::string &name = "root");
@@ -183,6 +192,7 @@ namespace zdunk
 
         void addAppender(LogAppender::ptr ptr);
         void delAppender(LogAppender::ptr ptr);
+        void clearAppenders();
 
         LogLevel::Level getlevel()
         {
@@ -190,11 +200,17 @@ namespace zdunk
         }
         void setlevel(LogLevel::Level val) { m_level = val; };
 
+        void setFormatter(LogFormatter::ptr val);
+        void setFormatter(std::string val);
+        LogFormatter::ptr getFormatter();
+
     private:
         std::string m_name;                      // 日志名称
         LogLevel::Level m_level;                 // 日志级别
         std::list<LogAppender::ptr> m_appenders; // appender是一个列表
         LogFormatter::ptr m_formatter;
+
+        Logger::ptr m_root;
     };
 
     // 控制台输出

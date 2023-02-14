@@ -5,6 +5,7 @@
 #include <time.h>
 #include <string.h>
 #include <stdarg.h>
+#include "config.h"
 
 namespace zdunk
 {
@@ -53,7 +54,7 @@ namespace zdunk
         NameFormatItem(const std::string &str = "") {}
         void format(std::ostream &os, std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event)
         {
-            os << logger->getName();
+            os << event->getLogger()->getName();
         }
     };
 
@@ -174,6 +175,22 @@ namespace zdunk
         return "UNKOWN";
     }
 
+    LogLevel::Level LogLevel::FromString(const std::string &str)
+    {
+#define XX(name)               \
+    if (str == #name)          \
+    {                          \
+        return LogLevel::name; \
+    }
+        XX(DEBUG);
+        XX(INFO);
+        XX(WARN);
+        XX(ERROR);
+        XX(FATAL);
+        return LogLevel::UNKOWN;
+#undef XX
+    }
+
     LogEventWrap::LogEventWrap(LogEvent::ptr e) : m_event(e)
     {
     }
@@ -251,14 +268,47 @@ namespace zdunk
         }
     }
 
+    void Logger::clearAppenders()
+    {
+        m_appenders.clear();
+    }
+
+    void Logger::setFormatter(LogFormatter::ptr val)
+    {
+        m_formatter = val;
+    }
+
+    void Logger::setFormatter(std::string val)
+    {
+        zdunk::LogFormatter::ptr new_val(new zdunk::LogFormatter(val));
+        if (new_val->isError())
+        {
+            std::cout << "Logger setFormatter name=" << m_name << " value=" << val << " invalid formatter" << std::endl;
+            return;
+        }
+        m_formatter = new_val;
+    }
+
+    LogFormatter::ptr Logger::getFormatter()
+    {
+        return m_formatter;
+    }
+
     void Logger::log(LogLevel::Level level, LogEvent::ptr event)
     {
         if (level >= m_level)
         {
             auto self = shared_from_this();
-            for (auto i : m_appenders)
+            if (!m_appenders.empty())
             {
-                i->log(self, level, event);
+                for (auto i : m_appenders)
+                {
+                    i->log(self, level, event);
+                }
+            }
+            else if (m_root)
+            {
+                m_root->log(level, event);
             }
         }
     }
@@ -405,6 +455,7 @@ namespace zdunk
             {
                 // std::cout << "pattern prase error:" << m_pattern << "-" << m_pattern.substr(i) << std::endl;
                 vec.push_back(std::make_tuple("<<pattern prase error>>", fmt, 1));
+                m_error = true;
             }
             else if (fmt_status == 2)
             {
@@ -457,6 +508,7 @@ namespace zdunk
                 if (it == s_format_items.end())
                 {
                     m_items.push_back(FormatItem::ptr(new StringFormatItem("<<error_format %" + std::get<0>(i) + ">>")));
+                    m_error = true;
                 }
                 else
                 {
@@ -471,10 +523,8 @@ namespace zdunk
     {
         m_root.reset(new Logger);
         m_root->addAppender(LogAppender::ptr(new StdoutLogAppender));
-    }
 
-    void LoggerManager::init()
-    {
+        init();
     }
 
     Logger::ptr LoggerManager::getLogger(const std::string &name)
@@ -484,7 +534,218 @@ namespace zdunk
         {
             return it->second;
         }
-        return m_root;
+
+        Logger::ptr logger(new Logger(name));
+        logger->m_root = m_root;
+        m_loggers[name] = logger;
+        return logger;
+    }
+
+    struct LogAppenderDefine
+    {
+        int type = 0; // 1 File, 2 Stdout
+        LogLevel::Level level = LogLevel::UNKOWN;
+        std::string formatter;
+        std::string file;
+
+        bool operator==(const LogAppenderDefine &oth) const
+        {
+            return type == oth.type && level == oth.level && formatter == oth.formatter && file == oth.file;
+        }
+    };
+
+    struct LogDefine
+    {
+        std::string name;
+        LogLevel::Level level = LogLevel::UNKOWN;
+        std::string formatter;
+        std::vector<LogAppenderDefine> appenders;
+
+        bool operator==(const LogDefine &oth) const
+        {
+            return name == oth.name && level == oth.level && formatter == oth.formatter && appenders == oth.appenders;
+        }
+
+        bool operator<(const LogDefine &oth) const
+        {
+            return name < oth.name;
+        }
+    };
+
+    template <>
+    class LexicalCast<std::string, std::set<LogDefine>>
+    {
+    public:
+        std::set<LogDefine> operator()(const std::string &v)
+        {
+            YAML::Node node = YAML::Load(v);
+            std::set<LogDefine> vec;
+            for (size_t i = 0; i < node.size(); ++i)
+            {
+                auto n = node[i];
+                if (n["name"].IsDefined())
+                {
+                    std::cout << "Logger config error: name is null, " << n << std::endl;
+                    continue;
+                }
+                LogDefine ld;
+                ld.name = n["name"].as<std::string>();
+                ld.level = LogLevel::FromString(n["level"].IsDefined() ? n["level"].as<std::string>() : "");
+                if (n["formatter"].IsDefined())
+                {
+                    ld.formatter = n["formatter"].as<std::string>();
+                }
+                if (n["appenders"].IsDefined())
+                {
+                    for (size_t x = 0; x < n["appenders"].size(); x++)
+                    {
+                        auto a = n["appenders"][x];
+                        if (!a["type"].IsDefined())
+                        {
+                            std::cout << "Logger config error: appender type is null, " << a << std::endl;
+                            continue;
+                        }
+                        std::string type = a["type"].as<std::string>();
+                        LogAppenderDefine lad;
+                        if (type == "FileLogAppender")
+                        {
+                            lad.type = 1;
+                            if (!n["file"].IsDefined())
+                            {
+                                std::cout << "Logger config error: fileAppender file is null, " << std::endl;
+                            }
+                            lad.file = n["file"].as<std::string>();
+                            if (n["formatter"].IsDefined())
+                            {
+                                lad.formatter = n["formatter"].as<std::string>();
+                            }
+                        }
+                        else if (type == "StdoutLogAppender")
+                        {
+                            lad.type = 2;
+                        }
+                        else
+                        {
+                            std::cout << "Logger config error: appender type is null, " << std::endl;
+                            continue;
+                        }
+                        ld.appenders.push_back(lad);
+                    }
+                }
+                vec.insert(ld);
+            }
+            return vec;
+        }
+    };
+
+    template <>
+    class LexicalCast<std::set<LogDefine>, std::string>
+    {
+    public:
+        std::string operator()(const std::set<LogDefine> &v)
+        {
+            YAML::Node node;
+            for (auto &i : v)
+            {
+                YAML::Node n;
+                n["name"] = i.name;
+                n["level"] = LogLevel::ToString(i.level);
+                if (i.formatter.empty())
+                {
+                    n["formatter"] = i.formatter;
+                }
+                for (auto &a : i.appenders)
+                {
+                    YAML::Node na;
+                    if (a.type == 1)
+                    {
+                        n["type"] = "FileLogAppender";
+                        n["file"] = a.file;
+                    }
+                    else if (a.type == 2)
+                    {
+                        n["type"] = "StdoutLogAppender";
+                    }
+                    na["level"] = LogLevel::ToString(a.level);
+                    if (a.formatter.empty())
+                    {
+                        na["formatter"] = a.formatter;
+                    }
+                    n["appenders"].push_back(na);
+                }
+            }
+            std::stringstream ss;
+            ss << node;
+            return ss.str();
+        }
+    };
+
+    zdunk::ConfigVar<std::set<LogDefine>>::ptr g_log_defines = zdunk::Config::Lookup("logs", std::set<LogDefine>(), "logs config"); // zdunk::Config::Lookup("logs", std::set<LogDefine>(), "logs config");
+
+    struct logIniter
+    {
+        logIniter()
+        {
+            g_log_defines->addListener(0xF1E231, [](const std::set<LogDefine> &old_value, const std::set<LogDefine> &new_value)
+                                       {
+                                        LOG_INFO(LOG_ROOT()) << "on_logger_conf_change";
+                                           for (auto &i : new_value)
+                                           {
+                                               auto it = old_value.find(i);
+                                               zdunk::Logger::ptr logger;
+                                               if (it == old_value.end())
+                                               {
+                                                   // 新增Logger
+                                                    logger.reset(new zdunk::Logger(i.name));
+                                               }
+                                               else
+                                               {
+                                                   if (!(i == *it))
+                                                   {
+                                                       // 修改的Logger
+                                                        logger = LOG_NAME(i.name);
+                                                   }
+                                               }
+                                               logger->setlevel(i.level);
+                                                    if(!i.formatter.empty())
+                                                    {
+                                                        logger->setFormatter(i.formatter);
+                                                    }
+
+                                                    logger->clearAppenders();
+                                                    for(auto&a :i.appenders)
+                                                    {
+                                                        zdunk::LogAppender::ptr ap;
+                                                        if(a.type == 1)
+                                                        {
+                                                            ap.reset(new FileLogAppender(a.file));
+                                                        }
+                                                        else if(a.type == 2)
+                                                        {
+                                                            ap.reset(new StdoutLogAppender());
+                                                        }
+                                                        ap->setLevel(a.level);
+                                                        logger->addAppender(ap);
+                                                    }
+                                           }
+                                           for(auto &i : old_value)
+                                           {
+                                                auto it = new_value.find(i);
+                                                if(it == new_value.end())
+                                                {
+                                                    //删除logger
+                                                    auto logger = LOG_NAME(i.name);
+                                                    logger->setlevel((LogLevel::Level)100);
+                                                    logger->clearAppenders();
+                                                }
+                                           } });
+        }
+    };
+
+    static logIniter __log_int;
+
+    void LoggerManager::init()
+    {
     }
 
 }
