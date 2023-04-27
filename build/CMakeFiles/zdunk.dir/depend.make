@@ -5,14 +5,25 @@ CMakeFiles/zdunk.dir/zdunk/config.cc.o: ../zdunk/config.cc
 CMakeFiles/zdunk.dir/zdunk/config.cc.o: ../zdunk/config.h
 CMakeFiles/zdunk.dir/zdunk/config.cc.o: ../zdunk/log.h
 CMakeFiles/zdunk.dir/zdunk/config.cc.o: ../zdunk/singleton.h
+CMakeFiles/zdunk.dir/zdunk/config.cc.o: ../zdunk/thread.h
 CMakeFiles/zdunk.dir/zdunk/config.cc.o: ../zdunk/utils.h
 
 CMakeFiles/zdunk.dir/zdunk/log.cc.o: ../zdunk/config.h
 CMakeFiles/zdunk.dir/zdunk/log.cc.o: ../zdunk/log.cc
 CMakeFiles/zdunk.dir/zdunk/log.cc.o: ../zdunk/log.h
 CMakeFiles/zdunk.dir/zdunk/log.cc.o: ../zdunk/singleton.h
+CMakeFiles/zdunk.dir/zdunk/log.cc.o: ../zdunk/thread.h
 CMakeFiles/zdunk.dir/zdunk/log.cc.o: ../zdunk/utils.h
 
+CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/log.h
+CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/singleton.h
+CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/thread.cc
+CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/thread.h
+CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/utils.h
+
+CMakeFiles/zdunk.dir/zdunk/utils.cc.o: ../zdunk/log.h
+CMakeFiles/zdunk.dir/zdunk/utils.cc.o: ../zdunk/singleton.h
+CMakeFiles/zdunk.dir/zdunk/utils.cc.o: ../zdunk/thread.h
 CMakeFiles/zdunk.dir/zdunk/utils.cc.o: ../zdunk/utils.cc
 CMakeFiles/zdunk.dir/zdunk/utils.cc.o: ../zdunk/utils.h
 

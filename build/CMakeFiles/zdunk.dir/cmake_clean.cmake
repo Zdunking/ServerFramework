@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "../lib/libzdunk.so"
   "CMakeFiles/zdunk.dir/zdunk/config.cc.o"
   "CMakeFiles/zdunk.dir/zdunk/log.cc.o"
+  "CMakeFiles/zdunk.dir/zdunk/thread.cc.o"
   "CMakeFiles/zdunk.dir/zdunk/utils.cc.o"
 )
 

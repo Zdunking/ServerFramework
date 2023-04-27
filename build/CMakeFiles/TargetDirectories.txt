@@ -1,5 +1,7 @@
 /home/zdunk/workspace/zdunking/build/CMakeFiles/rebuild_cache.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/edit_cache.dir
-/home/zdunk/workspace/zdunking/build/CMakeFiles/test_config.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/zdunk.dir
+/home/zdunk/workspace/zdunking/build/CMakeFiles/test_config.dir
+/home/zdunk/workspace/zdunking/build/CMakeFiles/test_utils.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/test.dir
+/home/zdunk/workspace/zdunking/build/CMakeFiles/test_thread.dir

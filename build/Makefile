@@ -114,19 +114,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_config
-
-# Build rule for target.
-test_config: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_config
-.PHONY : test_config
-
-# fast build rule for target.
-test_config/fast:
-	$(MAKE) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/build
-.PHONY : test_config/fast
-
-#=============================================================================
 # Target rules for targets named zdunk
 
 # Build rule for target.
@@ -140,6 +127,32 @@ zdunk/fast:
 .PHONY : zdunk/fast
 
 #=============================================================================
+# Target rules for targets named test_config
+
+# Build rule for target.
+test_config: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_config
+.PHONY : test_config
+
+# fast build rule for target.
+test_config/fast:
+	$(MAKE) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/build
+.PHONY : test_config/fast
+
+#=============================================================================
+# Target rules for targets named test_utils
+
+# Build rule for target.
+test_utils: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_utils
+.PHONY : test_utils
+
+# fast build rule for target.
+test_utils/fast:
+	$(MAKE) -f CMakeFiles/test_utils.dir/build.make CMakeFiles/test_utils.dir/build
+.PHONY : test_utils/fast
+
+#=============================================================================
 # Target rules for targets named test
 
 # Build rule for target.
@@ -151,6 +164,19 @@ test: cmake_check_build_system
 test/fast:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
 .PHONY : test/fast
+
+#=============================================================================
+# Target rules for targets named test_thread
+
+# Build rule for target.
+test_thread: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_thread
+.PHONY : test_thread
+
+# fast build rule for target.
+test_thread/fast:
+	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
+.PHONY : test_thread/fast
 
 tests/test.o: tests/test.cc.o
 
@@ -206,6 +232,60 @@ tests/test_config.cc.s:
 	$(MAKE) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/test_config.cc.s
 .PHONY : tests/test_config.cc.s
 
+tests/test_thread.o: tests/test_thread.cc.o
+
+.PHONY : tests/test_thread.o
+
+# target to build an object file
+tests/test_thread.cc.o:
+	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cc.o
+.PHONY : tests/test_thread.cc.o
+
+tests/test_thread.i: tests/test_thread.cc.i
+
+.PHONY : tests/test_thread.i
+
+# target to preprocess a source file
+tests/test_thread.cc.i:
+	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cc.i
+.PHONY : tests/test_thread.cc.i
+
+tests/test_thread.s: tests/test_thread.cc.s
+
+.PHONY : tests/test_thread.s
+
+# target to generate assembly for a file
+tests/test_thread.cc.s:
+	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cc.s
+.PHONY : tests/test_thread.cc.s
+
+tests/test_utils.o: tests/test_utils.cc.o
+
+.PHONY : tests/test_utils.o
+
+# target to build an object file
+tests/test_utils.cc.o:
+	$(MAKE) -f CMakeFiles/test_utils.dir/build.make CMakeFiles/test_utils.dir/tests/test_utils.cc.o
+.PHONY : tests/test_utils.cc.o
+
+tests/test_utils.i: tests/test_utils.cc.i
+
+.PHONY : tests/test_utils.i
+
+# target to preprocess a source file
+tests/test_utils.cc.i:
+	$(MAKE) -f CMakeFiles/test_utils.dir/build.make CMakeFiles/test_utils.dir/tests/test_utils.cc.i
+.PHONY : tests/test_utils.cc.i
+
+tests/test_utils.s: tests/test_utils.cc.s
+
+.PHONY : tests/test_utils.s
+
+# target to generate assembly for a file
+tests/test_utils.cc.s:
+	$(MAKE) -f CMakeFiles/test_utils.dir/build.make CMakeFiles/test_utils.dir/tests/test_utils.cc.s
+.PHONY : tests/test_utils.cc.s
+
 zdunk/config.o: zdunk/config.cc.o
 
 .PHONY : zdunk/config.o
@@ -260,6 +340,33 @@ zdunk/log.cc.s:
 	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/log.cc.s
 .PHONY : zdunk/log.cc.s
 
+zdunk/thread.o: zdunk/thread.cc.o
+
+.PHONY : zdunk/thread.o
+
+# target to build an object file
+zdunk/thread.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/thread.cc.o
+.PHONY : zdunk/thread.cc.o
+
+zdunk/thread.i: zdunk/thread.cc.i
+
+.PHONY : zdunk/thread.i
+
+# target to preprocess a source file
+zdunk/thread.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/thread.cc.i
+.PHONY : zdunk/thread.cc.i
+
+zdunk/thread.s: zdunk/thread.cc.s
+
+.PHONY : zdunk/thread.s
+
+# target to generate assembly for a file
+zdunk/thread.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/thread.cc.s
+.PHONY : zdunk/thread.cc.s
+
 zdunk/utils.o: zdunk/utils.cc.o
 
 .PHONY : zdunk/utils.o
@@ -295,21 +402,32 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... test_config"
 	@echo "... zdunk"
+	@echo "... test_config"
+	@echo "... test_utils"
 	@echo "... test"
+	@echo "... test_thread"
 	@echo "... tests/test.o"
 	@echo "... tests/test.i"
 	@echo "... tests/test.s"
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"
+	@echo "... tests/test_thread.o"
+	@echo "... tests/test_thread.i"
+	@echo "... tests/test_thread.s"
+	@echo "... tests/test_utils.o"
+	@echo "... tests/test_utils.i"
+	@echo "... tests/test_utils.s"
 	@echo "... zdunk/config.o"
 	@echo "... zdunk/config.i"
 	@echo "... zdunk/config.s"
 	@echo "... zdunk/log.o"
 	@echo "... zdunk/log.i"
 	@echo "... zdunk/log.s"
+	@echo "... zdunk/thread.o"
+	@echo "... zdunk/thread.i"
+	@echo "... zdunk/thread.s"
 	@echo "... zdunk/utils.o"
 	@echo "... zdunk/utils.i"
 	@echo "... zdunk/utils.s"
