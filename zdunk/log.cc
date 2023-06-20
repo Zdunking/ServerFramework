@@ -1,14 +1,300 @@
 #include "log.h"
+#include "config.h"
 #include <iostream>
 #include <map>
 #include <functional>
 #include <time.h>
 #include <string.h>
 #include <stdarg.h>
-#include "config.h"
 
 namespace zdunk
 {
+    const char *LogLevel::ToString(LogLevel::Level level)
+    {
+        switch (level)
+        {
+#define XX(name)         \
+    case LogLevel::name: \
+        return #name;    \
+        break;
+
+            XX(DEBUG);
+            XX(INFO);
+            XX(WARN);
+            XX(ERROR);
+            XX(FATAL);
+#undef XX
+
+        default:
+            return "UNKOWN";
+        }
+        return "UNKOWN";
+    }
+
+    LogLevel::Level LogLevel::FromString(const std::string &str)
+    {
+#define XX(name)               \
+    if (str == #name)          \
+    {                          \
+        return LogLevel::name; \
+    }
+        XX(DEBUG);
+        XX(INFO);
+        XX(WARN);
+        XX(ERROR);
+        XX(FATAL);
+        return LogLevel::UNKOWN;
+#undef XX
+    }
+
+    LogEventWrap::LogEventWrap(LogEvent::ptr e) : m_event(e)
+    {
+    }
+
+    LogEventWrap::~LogEventWrap()
+    {
+        m_event->getLogger()->log(m_event->getLevel(), m_event);
+    }
+
+    std::stringstream &LogEventWrap::getSS()
+    {
+        return m_event->getSS();
+    }
+
+    LogEvent::LogEvent(std::shared_ptr<Logger> logger,
+                       LogLevel::Level level,
+                       const char *file,
+                       int32_t line,
+                       uint32_t elapse,
+                       uint32_t threadId,
+                       uint32_t fiberId,
+                       time_t time,
+                       const std::string &threadName) : m_file(file),
+                                                        m_line(line),
+                                                        m_elapse(elapse),
+                                                        m_threadId(threadId),
+                                                        m_fiberId(fiberId),
+                                                        m_time(time),
+                                                        m_threadName(threadName),
+                                                        m_logger(logger),
+                                                        m_level(level)
+    {
+    }
+
+    void LogEvent::format(const char *fmt, ...)
+    {
+        va_list al;
+        va_start(al, fmt);
+        format(fmt, al);
+        va_end(al);
+    }
+    void LogEvent::format(const char *fmt, va_list al)
+    {
+        char *buf = nullptr;
+        int len = vasprintf(&buf, fmt, al);
+        if (len != -1)
+        {
+            m_ss << std::string(buf, len);
+            free(buf);
+        }
+    }
+
+    // 日志器的实现
+    Logger::Logger(const std::string &name) : m_name(name), m_level(LogLevel::Level::DEBUG)
+    {
+        m_formatter.reset(new LogFormatter("%d [%N:%t]%T%F [%p] [%c] [%f:%l] %m  %n")); // （默认格式）时间 线程号 协程号 %F [日志级别] [日志名称] [文件名:行号] 内容
+    }
+
+    void Logger::addAppender(LogAppender::ptr appender)
+    {
+        MutexType::Lock lock(m_mutex);
+        if (!appender->getFormatter())
+        {
+            appender->setFomatter(m_formatter);
+        }
+        m_appenders.push_back(appender);
+    }
+
+    void Logger::delAppender(LogAppender::ptr appender)
+    {
+        MutexType::Lock lock(m_mutex);
+        for (auto it = m_appenders.begin(); it != m_appenders.end(); it++)
+        {
+            if (*it == appender)
+            {
+                m_appenders.erase(it);
+                break;
+            }
+        }
+    }
+
+    void Logger::clearAppenders()
+    {
+        m_appenders.clear();
+    }
+
+    void Logger::setFormatter(LogFormatter::ptr val)
+    {
+        MutexType::Lock lock(m_mutex);
+        m_formatter = val;
+
+        // for (auto i : m_appenders)
+        // {
+        //     MutexType::Lock ll(i->m_mutex);
+        //     if (!i->m_hasFormatter)
+        //     {
+        //     }
+        // }
+    }
+
+    void Logger::setFormatter(std::string val)
+    {
+        zdunk::LogFormatter::ptr new_val(new zdunk::LogFormatter(val));
+        if (new_val->isError())
+        {
+            std::cout << "Logger setFormatter name=" << m_name << " value=" << val << " invalid formatter" << std::endl;
+            return;
+        }
+        m_formatter = new_val;
+    }
+
+    LogFormatter::ptr Logger::getFormatter()
+    {
+        MutexType::Lock lock(m_mutex);
+        return m_formatter;
+    }
+
+    void Logger::log(LogLevel::Level level, LogEvent::ptr event)
+    {
+        if (level >= m_level)
+        {
+            auto self = shared_from_this();
+            if (!m_appenders.empty())
+            {
+                for (auto i : m_appenders)
+                {
+                    i->log(self, level, event);
+                }
+            }
+            else if (m_root)
+            {
+                m_root->log(level, event);
+            }
+        }
+    }
+
+    std::string Logger::toYamlString()
+    {
+        MutexType::Lock lock(m_mutex);
+        YAML::Node node;
+        node["name"] = m_name;
+        node["level"] = LogLevel::ToString(m_level);
+        if (m_formatter)
+        {
+            node["fomatter"] = m_formatter->getPattern();
+        }
+
+        for (auto &i : m_appenders)
+        {
+            node["appenders"].push_back(YAML::Load(i->toYamlString()));
+        }
+        std::stringstream ss;
+        ss << node;
+        return ss.str();
+    }
+
+    // void Logger::debug(LogEvent::ptr event)
+    // {
+    //     log(LogLevel::DEBUG, event);
+    // }
+    // void Logger::info(LogEvent::ptr event)
+    // {
+
+    //     log(LogLevel::INFO, event);
+    // }
+    // void Logger::warn(LogEvent::ptr event)
+    // {
+
+    //     log(LogLevel::WARN, event);
+    // }
+    // void Logger::error(LogEvent::ptr event)
+    // {
+    //     log(LogLevel::ERROR, event);
+    // }
+
+    // void Logger::fatal(LogEvent::ptr event)
+    // {
+    //     log(LogLevel::FATAL, event);
+    // }
+
+    // Appender的相关实现
+    void LogAppender::setFomatter(LogFormatter::ptr val)
+    {
+        MutexType::Lock lock(m_mutex);
+        m_formatter = val;
+    }
+    LogFormatter::ptr LogAppender::getFormatter()
+    {
+        MutexType::Lock lock(m_mutex);
+        return m_formatter;
+    }
+
+    FileLogAppender::FileLogAppender(const std::string &filename) : m_filename(filename)
+    {
+        reopen();
+    }
+
+    void FileLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event)
+    {
+        if (level >= m_level)
+        {
+            MutexType::Lock lock(m_mutex);
+            m_filestream << m_formatter->format(logger, level, event);
+        }
+    }
+
+    std::string FileLogAppender::toYamlString()
+    {
+        MutexType::Lock lock(m_mutex);
+        YAML::Node node;
+        node["type"] = "FileLogAppender";
+        node["file"] = m_filename;
+        node["level"] = LogLevel::ToString(m_level);
+        std::stringstream ss;
+        ss << node;
+        return ss.str();
+    }
+
+    void FileLogAppender::reopen()
+    {
+        MutexType::Lock lock(m_mutex);
+        if (m_filestream)
+        {
+            m_filestream.close();
+        }
+        m_filestream.open(m_filename, std::fstream::in | std::fstream::out | std::fstream::app);
+        // return !!m_name;
+    }
+    void StdoutLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event)
+    {
+        if (level >= m_level)
+        {
+            MutexType::Lock lock(m_mutex);
+            std::cout << m_formatter->format(logger, level, event);
+        }
+    }
+
+    std::string StdoutLogAppender::toYamlString()
+    {
+        MutexType::Lock lock(m_mutex);
+        YAML::Node node;
+        node["type"] = "StdoutLogAppender";
+        node["level"] = LogLevel::ToString(m_level);
+        std::stringstream ss;
+        ss << node;
+        return ss.str();
+    }
+
     //%m -- 消息体
     //%p -- level
     //%r -- 启动后的时间
@@ -78,6 +364,16 @@ namespace zdunk
         void format(std::ostream &os, std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event)
         {
             os << event->getThreadID();
+        }
+    };
+
+    class ThreadNameFormatItem : public LogFormatter::FormatItem
+    {
+    public:
+        ThreadNameFormatItem(const std::string &str = "") {}
+        void format(std::ostream &os, std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event)
+        {
+            os << event->getThreadName();
         }
     };
 
@@ -152,222 +448,6 @@ namespace zdunk
             os << "\t";
         }
     };
-
-    const char *LogLevel::ToString(LogLevel::Level level)
-    {
-        switch (level)
-        {
-#define XX(name)         \
-    case LogLevel::name: \
-        return #name;    \
-        break;
-
-            XX(DEBUG);
-            XX(INFO);
-            XX(WARN);
-            XX(ERROR);
-            XX(FATAL);
-#undef XX
-
-        default:
-            return "UNKOWN";
-        }
-        return "UNKOWN";
-    }
-
-    LogLevel::Level LogLevel::FromString(const std::string &str)
-    {
-#define XX(name)               \
-    if (str == #name)          \
-    {                          \
-        return LogLevel::name; \
-    }
-        XX(DEBUG);
-        XX(INFO);
-        XX(WARN);
-        XX(ERROR);
-        XX(FATAL);
-        return LogLevel::UNKOWN;
-#undef XX
-    }
-
-    LogEventWrap::LogEventWrap(LogEvent::ptr e) : m_event(e)
-    {
-    }
-
-    LogEventWrap::~LogEventWrap()
-    {
-        m_event->getLogger()->log(m_event->getLevel(), m_event);
-    }
-
-    std::stringstream &LogEventWrap::getSS()
-    {
-        return m_event->getSS();
-    }
-
-    LogEvent::LogEvent(std::shared_ptr<Logger> logger,
-                       LogLevel::Level level,
-                       const char *file,
-                       int32_t line,
-                       uint32_t elapse,
-                       uint32_t threadId,
-                       uint32_t fiberId,
-                       time_t time) : m_file(file),
-                                      m_line(line),
-                                      m_elapse(elapse),
-                                      m_threadId(threadId),
-                                      m_fiberId(fiberId),
-                                      m_time(time),
-                                      m_logger(logger),
-                                      m_level(level)
-    {
-    }
-
-    void LogEvent::format(const char *fmt, ...)
-    {
-        va_list al;
-        va_start(al, fmt);
-        format(fmt, al);
-        va_end(al);
-    }
-    void LogEvent::format(const char *fmt, va_list al)
-    {
-        char *buf = nullptr;
-        int len = vasprintf(&buf, fmt, al);
-        if (len != -1)
-        {
-            m_ss << std::string(buf, len);
-            free(buf);
-        }
-    }
-
-    // 日志器的实现
-    Logger::Logger(const std::string &name) : m_name(name), m_level(LogLevel::Level::DEBUG)
-    {
-        m_formatter.reset(new LogFormatter("%d%T%t%T%F%T[%p]%T[%c]%T[%f:%l]%T%m  %n"));
-    }
-
-    void Logger::addAppender(LogAppender::ptr appender)
-    {
-        if (!appender->getFormatter())
-        {
-            appender->setFomatter(m_formatter);
-        }
-        m_appenders.push_back(appender);
-    }
-
-    void Logger::delAppender(LogAppender::ptr appender)
-    {
-        for (auto it = m_appenders.begin(); it != m_appenders.end(); it++)
-        {
-            if (*it == appender)
-            {
-                m_appenders.erase(it);
-                break;
-            }
-        }
-    }
-
-    void Logger::clearAppenders()
-    {
-        m_appenders.clear();
-    }
-
-    void Logger::setFormatter(LogFormatter::ptr val)
-    {
-        m_formatter = val;
-    }
-
-    void Logger::setFormatter(std::string val)
-    {
-        zdunk::LogFormatter::ptr new_val(new zdunk::LogFormatter(val));
-        if (new_val->isError())
-        {
-            std::cout << "Logger setFormatter name=" << m_name << " value=" << val << " invalid formatter" << std::endl;
-            return;
-        }
-        m_formatter = new_val;
-    }
-
-    LogFormatter::ptr Logger::getFormatter()
-    {
-        return m_formatter;
-    }
-
-    void Logger::log(LogLevel::Level level, LogEvent::ptr event)
-    {
-        if (level >= m_level)
-        {
-            auto self = shared_from_this();
-            if (!m_appenders.empty())
-            {
-                for (auto i : m_appenders)
-                {
-                    i->log(self, level, event);
-                }
-            }
-            else if (m_root)
-            {
-                m_root->log(level, event);
-            }
-        }
-    }
-
-    // void Logger::debug(LogEvent::ptr event)
-    // {
-    //     log(LogLevel::DEBUG, event);
-    // }
-    // void Logger::info(LogEvent::ptr event)
-    // {
-
-    //     log(LogLevel::INFO, event);
-    // }
-    // void Logger::warn(LogEvent::ptr event)
-    // {
-
-    //     log(LogLevel::WARN, event);
-    // }
-    // void Logger::error(LogEvent::ptr event)
-    // {
-    //     log(LogLevel::ERROR, event);
-    // }
-
-    // void Logger::fatal(LogEvent::ptr event)
-    // {
-    //     log(LogLevel::FATAL, event);
-    // }
-
-    // Appender的相关实现
-    FileLogAppender::FileLogAppender(const std::string &filename)
-    {
-        m_filename = filename;
-        reopen();
-    }
-
-    void FileLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event)
-    {
-        if (level >= m_level)
-        {
-            m_filestream << m_formatter->format(logger, level, event);
-        }
-    }
-
-    void FileLogAppender::reopen()
-    {
-        if (m_filestream)
-        {
-            m_filestream.close();
-        }
-        m_filestream.open(m_filename, std::fstream::in | std::fstream::out | std::fstream::app);
-        // return !!m_name;
-    }
-    void StdoutLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event)
-    {
-        if (level >= m_level)
-        {
-            std::cout << m_formatter->format(logger, level, event);
-        }
-    }
 
     std::string LogFormatter::format(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event)
     {
@@ -476,7 +556,7 @@ namespace zdunk
         static std::map<std::string, std::function<FormatItem::ptr(const std::string &str)>> s_format_items{
 #define XX(str, C)                                                               \
     {                                                                            \
-#str, [](const std::string &fmt) { return FormatItem::ptr(new C(fmt)); } \
+        #str, [](const std::string &fmt) { return FormatItem::ptr(new C(fmt)); } \
     }
 
             XX(m, MessageFormateItem),
@@ -490,6 +570,7 @@ namespace zdunk
             XX(l, LineFormatItem),
             XX(T, TabFormatItem),
             XX(F, FiberIdFormatItem),
+            XX(N, ThreadNameFormatItem)
 
 #undef XX
         };
@@ -523,12 +604,14 @@ namespace zdunk
     {
         m_root.reset(new Logger);
         m_root->addAppender(LogAppender::ptr(new StdoutLogAppender));
+        m_loggers.insert(std::make_pair("root", m_root));
 
         init();
     }
 
     Logger::ptr LoggerManager::getLogger(const std::string &name)
     {
+        MutexType::Lock lock(m_mutex);
         auto it = m_loggers.find(name);
         if (it != m_loggers.end())
         {
@@ -583,7 +666,7 @@ namespace zdunk
             for (size_t i = 0; i < node.size(); ++i)
             {
                 auto n = node[i];
-                if (n["name"].IsDefined())
+                if (!n["name"].IsDefined())
                 {
                     std::cout << "Logger config error: name is null, " << n << std::endl;
                     continue;
@@ -610,14 +693,14 @@ namespace zdunk
                         if (type == "FileLogAppender")
                         {
                             lad.type = 1;
-                            if (!n["file"].IsDefined())
+                            if (!a["file"].IsDefined())
                             {
                                 std::cout << "Logger config error: fileAppender file is null, " << std::endl;
                             }
-                            lad.file = n["file"].as<std::string>();
-                            if (n["formatter"].IsDefined())
+                            lad.file = a["file"].as<std::string>();
+                            if (a["formatter"].IsDefined())
                             {
-                                lad.formatter = n["formatter"].as<std::string>();
+                                lad.formatter = a["formatter"].as<std::string>();
                             }
                         }
                         else if (type == "StdoutLogAppender")
@@ -659,20 +742,21 @@ namespace zdunk
                     YAML::Node na;
                     if (a.type == 1)
                     {
-                        n["type"] = "FileLogAppender";
-                        n["file"] = a.file;
+                        na["type"] = "FileLogAppender";
+                        na["file"] = a.file;
                     }
                     else if (a.type == 2)
                     {
-                        n["type"] = "StdoutLogAppender";
+                        na["type"] = "StdoutLogAppender";
                     }
                     na["level"] = LogLevel::ToString(a.level);
-                    if (a.formatter.empty())
+                    if (!a.formatter.empty())
                     {
                         na["formatter"] = a.formatter;
                     }
                     n["appenders"].push_back(na);
                 }
+                node.push_back(n);
             }
             std::stringstream ss;
             ss << node;
@@ -743,6 +827,19 @@ namespace zdunk
     };
 
     static logIniter __log_int;
+
+    std::string LoggerManager::toYamlString()
+    {
+        MutexType::Lock lock(m_mutex);
+        YAML::Node node;
+        for (auto &i : m_loggers)
+        {
+            node.push_back(YAML::Load(i.second->toYamlString()));
+        }
+        std::stringstream ss;
+        ss << node;
+        return ss.str();
+    }
 
     void LoggerManager::init()
     {

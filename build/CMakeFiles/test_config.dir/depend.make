@@ -4,6 +4,7 @@
 CMakeFiles/test_config.dir/tests/test_config.cc.o: ../tests/test_config.cc
 CMakeFiles/test_config.dir/tests/test_config.cc.o: ../zdunk/config.h
 CMakeFiles/test_config.dir/tests/test_config.cc.o: ../zdunk/log.h
+CMakeFiles/test_config.dir/tests/test_config.cc.o: ../zdunk/noncopyable.h
 CMakeFiles/test_config.dir/tests/test_config.cc.o: ../zdunk/singleton.h
 CMakeFiles/test_config.dir/tests/test_config.cc.o: ../zdunk/thread.h
 CMakeFiles/test_config.dir/tests/test_config.cc.o: ../zdunk/utils.h

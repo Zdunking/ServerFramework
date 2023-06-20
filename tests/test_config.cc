@@ -1,6 +1,7 @@
 #include "../zdunk/config.h"
 #include "../zdunk/log.h"
 #include <yaml-cpp/yaml.h>
+#include <iostream>
 
 zdunk::ConfigVar<int>::ptr g_int_value_config = zdunk::Config::Lookup("system.port", (int)8080, "system port");
 
@@ -60,7 +61,7 @@ void print_yaml(const YAML::Node &node, int level)
 // 加载yaml
 void test_yaml()
 {
-    YAML::Node root = YAML::LoadFile("../bin/conf/test.yaml");
+    YAML::Node root = YAML::LoadFile("../bin/conf/test.yml");
     // LOG_INFO(LOG_ROOT()) << std::endl
     //                      << root;
     print_yaml(root, 0);
@@ -100,7 +101,7 @@ void test_config()
     XX_M(g_string_int_map_value_config, str_int_map, before)
     XX_M(g_string_int_umap_value_config, str_int_umap, before)
 
-    YAML::Node root = YAML::LoadFile("../bin/conf/test.yaml");
+    YAML::Node root = YAML::LoadFile("../bin/conf/test.yml");
 
     zdunk::Config::LoadFromYaml(root);
 
@@ -199,7 +200,7 @@ void test_class()
     XX_PM(g_person_map, "class.map before")
     LOG_INFO(LOG_ROOT()) << "before: " << g_person_vec_map->toString();
 
-    YAML::Node root = YAML::LoadFile("../bin/conf/test.yaml");
+    YAML::Node root = YAML::LoadFile("../bin/conf/test.yml");
     zdunk::Config::LoadFromYaml(root);
 
     LOG_INFO(LOG_ROOT()) << "after " << g_person->getValue().toString() << std::endl
@@ -211,10 +212,23 @@ void test_class()
 #undef XX_PM
 }
 
+void test_log()
+{
+    std::cout << zdunk::loggerMgr::GetInstance()->toYamlString() << std::endl;
+    YAML::Node root = YAML::LoadFile("../bin/conf/log.yml");
+    std::cout << "======================" << std::endl;
+    zdunk::Config::LoadFromYaml(root);
+    std::cout << zdunk::loggerMgr::GetInstance()->toYamlString() << std::endl;
+}
+
 int main()
 {
     // test_yaml();
-    // test_config();
-    test_class();
+
+    // test_config()
+
+    // test_class();
+
+    test_log();
     return 0;
 }

@@ -40,6 +40,8 @@ singleton.h
 thread.h
 /home/zdunk/workspace/zdunking/zdunk/thread.h
 
+/home/zdunk/workspace/zdunking/zdunk/noncopyable.h
+
 /home/zdunk/workspace/zdunking/zdunk/singleton.h
 
 /home/zdunk/workspace/zdunking/zdunk/thread.h
@@ -53,6 +55,8 @@ pthread.h
 -
 semaphore.h
 -
+noncopyable.h
+/home/zdunk/workspace/zdunking/zdunk/noncopyable.h
 
 /home/zdunk/workspace/zdunking/zdunk/utils.h
 stdint.h

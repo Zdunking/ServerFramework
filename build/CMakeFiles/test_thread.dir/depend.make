@@ -3,8 +3,10 @@
 
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../tests/test_thread.cc
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../zdunk/config.h
+CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../zdunk/fiber.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../zdunk/log.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../zdunk/macro.h
+CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../zdunk/noncopyable.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../zdunk/pch.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../zdunk/singleton.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../zdunk/thread.h

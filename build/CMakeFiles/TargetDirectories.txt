@@ -1,5 +1,8 @@
-/home/zdunk/workspace/zdunking/build/CMakeFiles/rebuild_cache.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/edit_cache.dir
+/home/zdunk/workspace/zdunking/build/CMakeFiles/test_iomanager.dir
+/home/zdunk/workspace/zdunking/build/CMakeFiles/rebuild_cache.dir
+/home/zdunk/workspace/zdunking/build/CMakeFiles/test_scheduler.dir
+/home/zdunk/workspace/zdunking/build/CMakeFiles/test_fiber.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/zdunk.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/test_config.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/test_utils.dir

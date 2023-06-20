@@ -59,17 +59,6 @@ CMAKE_BINARY_DIR = /home/zdunk/workspace/zdunking/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/apps/stone/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
@@ -80,6 +69,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/apps/stone/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -112,6 +112,45 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named test_iomanager
+
+# Build rule for target.
+test_iomanager: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_iomanager
+.PHONY : test_iomanager
+
+# fast build rule for target.
+test_iomanager/fast:
+	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/build
+.PHONY : test_iomanager/fast
+
+#=============================================================================
+# Target rules for targets named test_scheduler
+
+# Build rule for target.
+test_scheduler: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_scheduler
+.PHONY : test_scheduler
+
+# fast build rule for target.
+test_scheduler/fast:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
+.PHONY : test_scheduler/fast
+
+#=============================================================================
+# Target rules for targets named test_fiber
+
+# Build rule for target.
+test_fiber: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_fiber
+.PHONY : test_fiber
+
+# fast build rule for target.
+test_fiber/fast:
+	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
+.PHONY : test_fiber/fast
 
 #=============================================================================
 # Target rules for targets named zdunk
@@ -232,6 +271,87 @@ tests/test_config.cc.s:
 	$(MAKE) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/test_config.cc.s
 .PHONY : tests/test_config.cc.s
 
+tests/test_fiber.o: tests/test_fiber.cc.o
+
+.PHONY : tests/test_fiber.o
+
+# target to build an object file
+tests/test_fiber.cc.o:
+	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o
+.PHONY : tests/test_fiber.cc.o
+
+tests/test_fiber.i: tests/test_fiber.cc.i
+
+.PHONY : tests/test_fiber.i
+
+# target to preprocess a source file
+tests/test_fiber.cc.i:
+	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.i
+.PHONY : tests/test_fiber.cc.i
+
+tests/test_fiber.s: tests/test_fiber.cc.s
+
+.PHONY : tests/test_fiber.s
+
+# target to generate assembly for a file
+tests/test_fiber.cc.s:
+	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
+.PHONY : tests/test_fiber.cc.s
+
+tests/test_iomanager.o: tests/test_iomanager.cc.o
+
+.PHONY : tests/test_iomanager.o
+
+# target to build an object file
+tests/test_iomanager.cc.o:
+	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o
+.PHONY : tests/test_iomanager.cc.o
+
+tests/test_iomanager.i: tests/test_iomanager.cc.i
+
+.PHONY : tests/test_iomanager.i
+
+# target to preprocess a source file
+tests/test_iomanager.cc.i:
+	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.i
+.PHONY : tests/test_iomanager.cc.i
+
+tests/test_iomanager.s: tests/test_iomanager.cc.s
+
+.PHONY : tests/test_iomanager.s
+
+# target to generate assembly for a file
+tests/test_iomanager.cc.s:
+	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.s
+.PHONY : tests/test_iomanager.cc.s
+
+tests/test_scheduler.o: tests/test_scheduler.cc.o
+
+.PHONY : tests/test_scheduler.o
+
+# target to build an object file
+tests/test_scheduler.cc.o:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o
+.PHONY : tests/test_scheduler.cc.o
+
+tests/test_scheduler.i: tests/test_scheduler.cc.i
+
+.PHONY : tests/test_scheduler.i
+
+# target to preprocess a source file
+tests/test_scheduler.cc.i:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.i
+.PHONY : tests/test_scheduler.cc.i
+
+tests/test_scheduler.s: tests/test_scheduler.cc.s
+
+.PHONY : tests/test_scheduler.s
+
+# target to generate assembly for a file
+tests/test_scheduler.cc.s:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.s
+.PHONY : tests/test_scheduler.cc.s
+
 tests/test_thread.o: tests/test_thread.cc.o
 
 .PHONY : tests/test_thread.o
@@ -313,6 +433,60 @@ zdunk/config.cc.s:
 	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/config.cc.s
 .PHONY : zdunk/config.cc.s
 
+zdunk/fiber.o: zdunk/fiber.cc.o
+
+.PHONY : zdunk/fiber.o
+
+# target to build an object file
+zdunk/fiber.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/fiber.cc.o
+.PHONY : zdunk/fiber.cc.o
+
+zdunk/fiber.i: zdunk/fiber.cc.i
+
+.PHONY : zdunk/fiber.i
+
+# target to preprocess a source file
+zdunk/fiber.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/fiber.cc.i
+.PHONY : zdunk/fiber.cc.i
+
+zdunk/fiber.s: zdunk/fiber.cc.s
+
+.PHONY : zdunk/fiber.s
+
+# target to generate assembly for a file
+zdunk/fiber.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/fiber.cc.s
+.PHONY : zdunk/fiber.cc.s
+
+zdunk/iomanager.o: zdunk/iomanager.cc.o
+
+.PHONY : zdunk/iomanager.o
+
+# target to build an object file
+zdunk/iomanager.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o
+.PHONY : zdunk/iomanager.cc.o
+
+zdunk/iomanager.i: zdunk/iomanager.cc.i
+
+.PHONY : zdunk/iomanager.i
+
+# target to preprocess a source file
+zdunk/iomanager.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/iomanager.cc.i
+.PHONY : zdunk/iomanager.cc.i
+
+zdunk/iomanager.s: zdunk/iomanager.cc.s
+
+.PHONY : zdunk/iomanager.s
+
+# target to generate assembly for a file
+zdunk/iomanager.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/iomanager.cc.s
+.PHONY : zdunk/iomanager.cc.s
+
 zdunk/log.o: zdunk/log.cc.o
 
 .PHONY : zdunk/log.o
@@ -339,6 +513,33 @@ zdunk/log.s: zdunk/log.cc.s
 zdunk/log.cc.s:
 	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/log.cc.s
 .PHONY : zdunk/log.cc.s
+
+zdunk/scheduler.o: zdunk/scheduler.cc.o
+
+.PHONY : zdunk/scheduler.o
+
+# target to build an object file
+zdunk/scheduler.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o
+.PHONY : zdunk/scheduler.cc.o
+
+zdunk/scheduler.i: zdunk/scheduler.cc.i
+
+.PHONY : zdunk/scheduler.i
+
+# target to preprocess a source file
+zdunk/scheduler.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/scheduler.cc.i
+.PHONY : zdunk/scheduler.cc.i
+
+zdunk/scheduler.s: zdunk/scheduler.cc.s
+
+.PHONY : zdunk/scheduler.s
+
+# target to generate assembly for a file
+zdunk/scheduler.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/scheduler.cc.s
+.PHONY : zdunk/scheduler.cc.s
 
 zdunk/thread.o: zdunk/thread.cc.o
 
@@ -400,8 +601,11 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test_iomanager"
+	@echo "... rebuild_cache"
+	@echo "... test_scheduler"
+	@echo "... test_fiber"
 	@echo "... zdunk"
 	@echo "... test_config"
 	@echo "... test_utils"
@@ -413,6 +617,15 @@ help:
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"
+	@echo "... tests/test_fiber.o"
+	@echo "... tests/test_fiber.i"
+	@echo "... tests/test_fiber.s"
+	@echo "... tests/test_iomanager.o"
+	@echo "... tests/test_iomanager.i"
+	@echo "... tests/test_iomanager.s"
+	@echo "... tests/test_scheduler.o"
+	@echo "... tests/test_scheduler.i"
+	@echo "... tests/test_scheduler.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"
@@ -422,9 +635,18 @@ help:
 	@echo "... zdunk/config.o"
 	@echo "... zdunk/config.i"
 	@echo "... zdunk/config.s"
+	@echo "... zdunk/fiber.o"
+	@echo "... zdunk/fiber.i"
+	@echo "... zdunk/fiber.s"
+	@echo "... zdunk/iomanager.o"
+	@echo "... zdunk/iomanager.i"
+	@echo "... zdunk/iomanager.s"
 	@echo "... zdunk/log.o"
 	@echo "... zdunk/log.i"
 	@echo "... zdunk/log.s"
+	@echo "... zdunk/scheduler.o"
+	@echo "... zdunk/scheduler.i"
+	@echo "... zdunk/scheduler.s"
 	@echo "... zdunk/thread.o"
 	@echo "... zdunk/thread.i"
 	@echo "... zdunk/thread.s"

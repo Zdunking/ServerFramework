@@ -3,6 +3,7 @@
 
 CMakeFiles/test.dir/tests/test.cc.o: ../tests/test.cc
 CMakeFiles/test.dir/tests/test.cc.o: ../zdunk/log.h
+CMakeFiles/test.dir/tests/test.cc.o: ../zdunk/noncopyable.h
 CMakeFiles/test.dir/tests/test.cc.o: ../zdunk/singleton.h
 CMakeFiles/test.dir/tests/test.cc.o: ../zdunk/thread.h
 CMakeFiles/test.dir/tests/test.cc.o: ../zdunk/utils.h

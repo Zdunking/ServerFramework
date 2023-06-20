@@ -7,14 +7,13 @@ int main()
     zdunk::Logger::ptr logger(new zdunk::Logger);
 
     zdunk::LogAppender::ptr std_append(new zdunk::StdoutLogAppender);
-    std_append->setLevel(zdunk::LogLevel::Level::ERROR);
+    std_append->setLevel(zdunk::LogLevel::Level::DEBUG);
     logger->addAppender(std_append);
 
     zdunk::FileLogAppender::ptr file_append(new zdunk::FileLogAppender("./test.log"));
     zdunk::LogFormatter::ptr fmt(new zdunk::LogFormatter("%d%T%p%T%m%n"));
     file_append->setFomatter(fmt);
-    file_append->setLevel(zdunk::LogLevel::Level::DEBUG);
-
+    file_append->setLevel(zdunk::LogLevel::Level::ERROR);
     logger->addAppender(file_append);
 
     // zdunk::LogEvent::ptr event(new zdunk::LogEvent(__FILE__, __LINE__, 0, zdunk::GetThreadId(), zdunk::GetFiberID(), time(0))); // LogEvent被默认初始化，但是m_content和ss没有被初始化

@@ -11,12 +11,13 @@
 #include <map>
 #include "utils.h"
 #include "singleton.h"
+#include "thread.h"
 
-#define LOG_LEVEL(logger, level)                                                                              \
-    if (logger->getlevel() <= level)                                                                          \
-    zdunk::LogEventWrap(zdunk::LogEvent::ptr(new zdunk::LogEvent(logger, level,                               \
-                                                                 __FILE__, __LINE__, 0, zdunk::GetThreadId(), \
-                                                                 zdunk::GetFiberID(), time(0))))              \
+#define LOG_LEVEL(logger, level)                                                                                           \
+    if (logger->getlevel() <= level)                                                                                       \
+    zdunk::LogEventWrap(zdunk::LogEvent::ptr(new zdunk::LogEvent(logger, level,                                            \
+                                                                 __FILE__, __LINE__, 0, zdunk::GetThreadId(),              \
+                                                                 zdunk::GetFiberID(), time(0), zdunk::Thread::GetName()))) \
         .getSS()
 
 #define LOG_DEBUG(logger) LOG_LEVEL(logger, zdunk::LogLevel::Level::DEBUG)
@@ -25,12 +26,12 @@
 #define LOG_WARN(logger) LOG_LEVEL(logger, zdunk::LogLevel::Level::WARN)
 #define LOG_FATAL(logger) LOG_LEVEL(logger, zdunk::LogLevel::Level::FATAL)
 
-#define LOG_FMT_LEVEL(logger, level, fmt, ...)                                                                \
-    if (logger->getlevel() <= level)                                                                          \
-    zdunk::LogEventWrap(zdunk::LogEvent::ptr(new zdunk::LogEvent(logger, level,                               \
-                                                                 __FILE__, __LINE__, 0, zdunk::GetThreadId(), \
-                                                                 zdunk::GetFiberID(), time(0))))              \
-        .getEvent()                                                                                           \
+#define LOG_FMT_LEVEL(logger, level, fmt, ...)                                                                             \
+    if (logger->getlevel() <= level)                                                                                       \
+    zdunk::LogEventWrap(zdunk::LogEvent::ptr(new zdunk::LogEvent(logger, level,                                            \
+                                                                 __FILE__, __LINE__, 0, zdunk::GetThreadId(),              \
+                                                                 zdunk::GetFiberID(), time(0), zdunk::Thread::GetName()))) \
+        .getEvent()                                                                                                        \
         ->format(fmt, __VA_ARGS__)
 
 #define WRITELOG_DEBUG(logger, fmt, ...) LOG_FMT_LEVEL(logger, zdunk::LogLevel::Level::DEBUG, fmt, __VA_ARGS__)
@@ -77,7 +78,8 @@ namespace zdunk
                  uint32_t elapse,
                  uint32_t threadId,
                  uint32_t fiberId,
-                 time_t time);
+                 time_t time,
+                 const std::string &thread_name);
         typedef std::shared_ptr<LogEvent> ptr;
         const char *getFile() const { return m_file; }
         int32_t getLine() const { return m_line; }
@@ -88,6 +90,7 @@ namespace zdunk
         std::string getContent() const { return m_ss.str(); }
         std::shared_ptr<Logger> getLogger() const { return m_logger; }
         LogLevel::Level getLevel() const { return m_level; };
+        const std::string &getThreadName() const { return m_threadName; }
 
         std::stringstream &getSS() { return m_ss; }
         void format(const char *fmt, ...);
@@ -100,12 +103,14 @@ namespace zdunk
         uint32_t m_threadId = 0;      // 线程ID
         uint32_t m_fiberId = 0;       // 协程号
         time_t m_time;                // 时间戳
+        std::string m_threadName;
         std::stringstream m_ss;
 
         std::shared_ptr<Logger> m_logger;
         LogLevel::Level m_level;
     };
 
+    // 由他去处理日志事件，拿到日志结果存入stringstream, 析构的时候调用event里面的log去将ss打入对应的appender
     class LogEventWrap
     {
     public:
@@ -130,6 +135,7 @@ namespace zdunk
         }
 
         std::string format(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event);
+        std::string getPattern() { return m_pattern; }
 
     public:
         class FormatItem
@@ -157,18 +163,22 @@ namespace zdunk
     {
     public:
         typedef std::shared_ptr<LogAppender> ptr;
+        typedef NullMutex MutexType;
         virtual ~LogAppender(){};
 
         virtual void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) = 0;
+        virtual std::string toYamlString() = 0;
 
-        void setFomatter(LogFormatter::ptr val) { m_formatter = val; }
-        LogFormatter::ptr getFormatter() const { return m_formatter; }
+        void setFomatter(LogFormatter::ptr val);
+        LogFormatter::ptr getFormatter();
 
         void setLevel(LogLevel::Level level) { m_level = level; }
         LogLevel::Level getLevel() { return m_level; }
 
     protected:
         LogLevel::Level m_level = LogLevel::Level::DEBUG;
+        bool m_hasFormatter = false;
+        MutexType m_mutex;
         LogFormatter::ptr m_formatter;
     };
 
@@ -179,8 +189,11 @@ namespace zdunk
 
     public:
         typedef std::shared_ptr<Logger> ptr;
+        typedef NullMutex MutexType;
+
         Logger(const std::string &name = "root");
         void log(LogLevel::Level level, LogEvent::ptr event);
+        std::string toYamlString();
 
         // void debug(LogEvent::ptr event);
         // void info(LogEvent::ptr event);
@@ -207,9 +220,9 @@ namespace zdunk
     private:
         std::string m_name;                      // 日志名称
         LogLevel::Level m_level;                 // 日志级别
-        std::list<LogAppender::ptr> m_appenders; // appender是一个列表
-        LogFormatter::ptr m_formatter;
-
+        std::list<LogAppender::ptr> m_appenders; // appender是一个列表（这里只能手动添加）
+        LogFormatter::ptr m_formatter;           // 初始化时会提供一个初始值，给没有fomatter的appender赋初值
+        MutexType m_mutex;
         Logger::ptr m_root;
     };
 
@@ -219,6 +232,7 @@ namespace zdunk
     public:
         typedef std::shared_ptr<StdoutLogAppender> ptr;
         void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override;
+        std::string toYamlString() override;
     };
 
     // 输出到文件
@@ -228,6 +242,7 @@ namespace zdunk
         typedef std::shared_ptr<FileLogAppender> ptr;
         FileLogAppender(const std::string &filename);
         void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override;
+        std::string toYamlString() override;
         void reopen();
 
     private:
@@ -238,12 +253,15 @@ namespace zdunk
     class LoggerManager
     {
     public:
+        typedef NullMutex MutexType;
         LoggerManager();
         Logger::ptr getLogger(const std::string &name);
         Logger::ptr getRoot() { return m_root; }
+        std::string toYamlString();
         void init();
 
     private:
+        MutexType m_mutex;
         std::map<std::string, Logger::ptr> m_loggers;
         Logger::ptr m_root;
     };

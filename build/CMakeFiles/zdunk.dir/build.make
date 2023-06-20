@@ -112,12 +112,54 @@ CMakeFiles/zdunk.dir/zdunk/thread.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zdunk.dir/zdunk/thread.cc.s"
 	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zdunk/workspace/zdunking/zdunk/thread.cc -o CMakeFiles/zdunk.dir/zdunk/thread.cc.s
 
+CMakeFiles/zdunk.dir/zdunk/fiber.cc.o: CMakeFiles/zdunk.dir/flags.make
+CMakeFiles/zdunk.dir/zdunk/fiber.cc.o: ../zdunk/fiber.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zdunk/workspace/zdunking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/zdunk.dir/zdunk/fiber.cc.o"
+	/apps/stone/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zdunk.dir/zdunk/fiber.cc.o -c /home/zdunk/workspace/zdunking/zdunk/fiber.cc
+
+CMakeFiles/zdunk.dir/zdunk/fiber.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zdunk.dir/zdunk/fiber.cc.i"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zdunk/workspace/zdunking/zdunk/fiber.cc > CMakeFiles/zdunk.dir/zdunk/fiber.cc.i
+
+CMakeFiles/zdunk.dir/zdunk/fiber.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zdunk.dir/zdunk/fiber.cc.s"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zdunk/workspace/zdunking/zdunk/fiber.cc -o CMakeFiles/zdunk.dir/zdunk/fiber.cc.s
+
+CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o: CMakeFiles/zdunk.dir/flags.make
+CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o: ../zdunk/scheduler.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zdunk/workspace/zdunking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o"
+	/apps/stone/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o -c /home/zdunk/workspace/zdunking/zdunk/scheduler.cc
+
+CMakeFiles/zdunk.dir/zdunk/scheduler.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zdunk.dir/zdunk/scheduler.cc.i"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zdunk/workspace/zdunking/zdunk/scheduler.cc > CMakeFiles/zdunk.dir/zdunk/scheduler.cc.i
+
+CMakeFiles/zdunk.dir/zdunk/scheduler.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zdunk.dir/zdunk/scheduler.cc.s"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zdunk/workspace/zdunking/zdunk/scheduler.cc -o CMakeFiles/zdunk.dir/zdunk/scheduler.cc.s
+
+CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o: CMakeFiles/zdunk.dir/flags.make
+CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o: ../zdunk/iomanager.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zdunk/workspace/zdunking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o"
+	/apps/stone/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o -c /home/zdunk/workspace/zdunking/zdunk/iomanager.cc
+
+CMakeFiles/zdunk.dir/zdunk/iomanager.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zdunk.dir/zdunk/iomanager.cc.i"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zdunk/workspace/zdunking/zdunk/iomanager.cc > CMakeFiles/zdunk.dir/zdunk/iomanager.cc.i
+
+CMakeFiles/zdunk.dir/zdunk/iomanager.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zdunk.dir/zdunk/iomanager.cc.s"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zdunk/workspace/zdunking/zdunk/iomanager.cc -o CMakeFiles/zdunk.dir/zdunk/iomanager.cc.s
+
 # Object files for target zdunk
 zdunk_OBJECTS = \
 "CMakeFiles/zdunk.dir/zdunk/log.cc.o" \
 "CMakeFiles/zdunk.dir/zdunk/utils.cc.o" \
 "CMakeFiles/zdunk.dir/zdunk/config.cc.o" \
-"CMakeFiles/zdunk.dir/zdunk/thread.cc.o"
+"CMakeFiles/zdunk.dir/zdunk/thread.cc.o" \
+"CMakeFiles/zdunk.dir/zdunk/fiber.cc.o" \
+"CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o" \
+"CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o"
 
 # External object files for target zdunk
 zdunk_EXTERNAL_OBJECTS =
@@ -126,9 +168,12 @@ zdunk_EXTERNAL_OBJECTS =
 ../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/utils.cc.o
 ../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/config.cc.o
 ../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/thread.cc.o
+../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/fiber.cc.o
+../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o
+../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o
 ../lib/libzdunk.so: CMakeFiles/zdunk.dir/build.make
 ../lib/libzdunk.so: CMakeFiles/zdunk.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zdunk/workspace/zdunking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library ../lib/libzdunk.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zdunk/workspace/zdunking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX shared library ../lib/libzdunk.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/zdunk.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
