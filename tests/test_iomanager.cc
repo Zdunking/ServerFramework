@@ -50,8 +50,25 @@ void test1()
     iom.schedule(&test_fiber);
 }
 
+static zdunk::Timer::ptr s_timer;
+void test_timer()
+{
+    zdunk::IOManager iom;
+    s_timer = iom.addTimer(
+        500, []()
+        {static int i = 0; 
+         LOG_TRACE << "Hello timer id = " << i; 
+        if(++i == 3)
+        {
+            //s_timer->cancel();
+            s_timer->reset(2000, true);
+        } },
+        true);
+}
+
 int main()
 {
-    test1();
+    // test1();
+    test_timer();
     return 0;
 }

@@ -297,20 +297,30 @@ namespace zdunk
         ZDUNK_ASSERT(rt == 1);
     }
 
+    bool IOManager::stopping(uint64_t &timeout)
+    {
+        timeout = getNextTimer();
+        return timeout == ~0ull && m_pendingEventCount == 0 && Scheduler::stopping();
+    }
+
     bool IOManager::stopping()
     {
-        return Scheduler::stopping() && m_pendingEventCount == 0;
+        uint64_t timeout = 0;
+        return stopping(timeout);
     }
 
     void IOManager::idle()
     {
-        epoll_event *events = new epoll_event[64]();
+        LOG_DEBUG(g_logger) << "idle";
+        const uint64_t MAX_EVNETS = 256;
+        epoll_event *events = new epoll_event[MAX_EVNETS]();
         std::shared_ptr<epoll_event> shared_events(events, [](epoll_event *ptr)
                                                    { delete[] ptr; });
 
         while (true)
         {
-            if (stopping())
+            uint64_t next_timeout = 0;
+            if (stopping(next_timeout))
             {
                 LOG_INFO(g_logger) << "name=" << getName() << " idle stopping exit";
                 break;
@@ -319,8 +329,18 @@ namespace zdunk
             int rt = 0;
             do
             {
-                static const int MAX_TIMEOUT = 5000;
-                rt = epoll_wait(m_epfd, events, 64, MAX_TIMEOUT);
+                static const int MAX_TIMEOUT = 3000;
+                if (next_timeout != ~0ull)
+                {
+                    next_timeout = (int)next_timeout > MAX_TIMEOUT
+                                       ? MAX_TIMEOUT
+                                       : next_timeout;
+                }
+                else
+                {
+                    next_timeout = MAX_TIMEOUT;
+                }
+                rt = epoll_wait(m_epfd, events, MAX_EVNETS, (int)next_timeout);
                 if (rt < 0 && errno == EINTR)
                 {
                 }
@@ -330,13 +350,21 @@ namespace zdunk
                 }
             } while (true);
 
+            std::vector<std::function<void()>> cbs;
+            listExpiredCb(cbs);
+            if (!cbs.empty())
+            {
+                schedule(cbs.begin(), cbs.end());
+                cbs.clear();
+            }
+
             for (int i = 0; i < rt; ++i)
             {
                 epoll_event &event = events[i];
                 if (event.data.fd == m_tickleFds[0])
                 {
-                    uint8_t dummy;
-                    while (read(m_tickleFds[0], &dummy, 1) == 1)
+                    uint8_t dummy[256];
+                    while (read(m_tickleFds[0], dummy, sizeof(dummy)) > 0)
                         ;
                     continue;
                 }
@@ -345,7 +373,7 @@ namespace zdunk
                 FdContext::MutexType::Lock lock(fd_ctx->mutex);
                 if (event.events & (EPOLLERR | EPOLLHUP))
                 {
-                    event.events |= EPOLLIN | EPOLLOUT;
+                    event.events |= (EPOLLIN | EPOLLOUT) & fd_ctx->events;
                 }
 
                 int real_events = NONE;
@@ -394,5 +422,10 @@ namespace zdunk
 
             raw_ptr->swapOut();
         }
+    }
+
+    void IOManager::onTimerInsertedAtFront()
+    {
+        tickle();
     }
 }

@@ -1,8 +1,9 @@
 #include "scheduler.h"
+#include "timer.h"
 
 namespace zdunk
 {
-    class IOManager : public Scheduler
+    class IOManager : public Scheduler, public TimerManager
     {
     public:
         typedef std::shared_ptr<IOManager> ptr;
@@ -30,8 +31,11 @@ namespace zdunk
         virtual void tickle() override;
         virtual bool stopping() override;
         virtual void idle() override;
+        virtual void onTimerInsertedAtFront() override;
 
         void contextResize(size_t size);
+
+        bool stopping(uint64_t &timeout);
 
     private:
         struct FdContext

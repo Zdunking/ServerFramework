@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/zdunk/workspace/zdunking/zdunk/log.cc" "/home/zdunk/workspace/zdunking/build/CMakeFiles/zdunk.dir/zdunk/log.cc.o"
   "/home/zdunk/workspace/zdunking/zdunk/scheduler.cc" "/home/zdunk/workspace/zdunking/build/CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o"
   "/home/zdunk/workspace/zdunking/zdunk/thread.cc" "/home/zdunk/workspace/zdunking/build/CMakeFiles/zdunk.dir/zdunk/thread.cc.o"
+  "/home/zdunk/workspace/zdunking/zdunk/timer.cc" "/home/zdunk/workspace/zdunking/build/CMakeFiles/zdunk.dir/zdunk/timer.cc.o"
   "/home/zdunk/workspace/zdunking/zdunk/utils.cc" "/home/zdunk/workspace/zdunking/build/CMakeFiles/zdunk.dir/zdunk/utils.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

@@ -236,7 +236,10 @@ namespace zdunk
                     continue;
                 }
                 if (idle_fiber->getState() == Fiber::TERM)
+                {
+                    LOG_INFO(g_logger) << "idle fiber term";
                     break;
+                }
                 ++m_idleThreadCount;
                 idle_fiber->swapIn();
                 --m_idleThreadCount;

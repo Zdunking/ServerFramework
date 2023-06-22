@@ -568,6 +568,33 @@ zdunk/thread.cc.s:
 	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/thread.cc.s
 .PHONY : zdunk/thread.cc.s
 
+zdunk/timer.o: zdunk/timer.cc.o
+
+.PHONY : zdunk/timer.o
+
+# target to build an object file
+zdunk/timer.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/timer.cc.o
+.PHONY : zdunk/timer.cc.o
+
+zdunk/timer.i: zdunk/timer.cc.i
+
+.PHONY : zdunk/timer.i
+
+# target to preprocess a source file
+zdunk/timer.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/timer.cc.i
+.PHONY : zdunk/timer.cc.i
+
+zdunk/timer.s: zdunk/timer.cc.s
+
+.PHONY : zdunk/timer.s
+
+# target to generate assembly for a file
+zdunk/timer.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/timer.cc.s
+.PHONY : zdunk/timer.cc.s
+
 zdunk/utils.o: zdunk/utils.cc.o
 
 .PHONY : zdunk/utils.o
@@ -650,6 +677,9 @@ help:
 	@echo "... zdunk/thread.o"
 	@echo "... zdunk/thread.i"
 	@echo "... zdunk/thread.s"
+	@echo "... zdunk/timer.o"
+	@echo "... zdunk/timer.i"
+	@echo "... zdunk/timer.s"
 	@echo "... zdunk/utils.o"
 	@echo "... zdunk/utils.i"
 	@echo "... zdunk/utils.s"

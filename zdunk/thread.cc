@@ -38,7 +38,7 @@ namespace zdunk
         }
     }
 
-    Thread::Thread(std::function<void()> cb, std::string name) : m_cb(cb), m_name(name)
+    Thread::Thread(std::function<void()> cb, const std::string &name) : m_cb(cb), m_name(name)
     {
         if (name.empty())
         {

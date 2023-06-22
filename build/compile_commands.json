@@ -51,6 +51,11 @@
 },
 {
   "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++  -Dzdunk_EXPORTS   -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g -fPIC   -o CMakeFiles/zdunk.dir/zdunk/timer.cc.o -c /home/zdunk/workspace/zdunking/zdunk/timer.cc",
+  "file": "/home/zdunk/workspace/zdunking/zdunk/timer.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
   "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_config.dir/tests/test_config.cc.o -c /home/zdunk/workspace/zdunking/tests/test_config.cc",
   "file": "/home/zdunk/workspace/zdunking/tests/test_config.cc"
 },

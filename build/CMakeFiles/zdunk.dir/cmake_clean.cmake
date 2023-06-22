@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/zdunk.dir/zdunk/log.cc.o"
   "CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o"
   "CMakeFiles/zdunk.dir/zdunk/thread.cc.o"
+  "CMakeFiles/zdunk.dir/zdunk/timer.cc.o"
   "CMakeFiles/zdunk.dir/zdunk/utils.cc.o"
 )
 

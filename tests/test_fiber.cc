@@ -32,15 +32,17 @@ int main()
 {
 
     zdunk::Thread::SetName("main");
-    std::vector<zdunk::Thread::ptr> thrs;
-    for (int i = 0; i < 3; i++)
-    {
-        thrs.push_back(zdunk::Thread::ptr(new zdunk::Thread(test_fiber, "name_" + std::to_string(i))));
-    }
-    for (auto i : thrs)
-    {
-        i->join();
-    }
+    // std::vector<zdunk::Thread::ptr> thrs;
+    // for (int i = 0; i < 3; i++)
+    // {
+    //     thrs.push_back(zdunk::Thread::ptr(new zdunk::Thread(&test_fiber, "name_" + std::to_string(i))));
+    // }
+    // for (auto i : thrs)
+    // {
+    //     i->join();
+    // }
 
+    auto it = zdunk::Thread::ptr(new zdunk::Thread(&test_fiber, "name_" + std::to_string(0)));
+    it->join();
     return 0;
 }

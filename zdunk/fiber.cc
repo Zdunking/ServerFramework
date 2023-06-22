@@ -14,7 +14,7 @@ namespace zdunk
     static thread_local Fiber *t_fiber = nullptr;
     static thread_local Fiber::ptr t_threadFiber = nullptr;
 
-    static ConfigVar<uint32_t>::ptr g_fiber_stack_size = Config::Lookup<uint32_t>("fiber.stack_size", 1024 * 1024, "fiber stack size");
+    static ConfigVar<uint32_t>::ptr g_fiber_stack_size = Config::Lookup<uint32_t>("fiber.stack_size", 128 * 1024, "fiber stack size");
 
     class MallocStackAllocator
     {
@@ -44,13 +44,13 @@ namespace zdunk
 
         ++s_fiber_count;
 
-        LOG_DEBUG(g_logger) << "Fiber::Fiber";
+        LOG_DEBUG(g_logger) << "Main fiber init!";
     }
 
-    Fiber::Fiber(std::function<void()> cb, size_t stackszie /*= 0*/, bool use_caller /*= false*/) : m_id(++s_fiber_id), m_cb(cb)
+    Fiber::Fiber(std::function<void()> cb, size_t stacksize /*= 0*/, bool use_caller /*= false*/) : m_id(++s_fiber_id), m_cb(cb)
     {
         ++s_fiber_count;
-        m_stackSize = stackszie ? stackszie : g_fiber_stack_size->getValue();
+        m_stackSize = stacksize ? stacksize : g_fiber_stack_size->getValue();
         m_stack = StackAllocator::Alloc(m_stackSize);
         if (getcontext(&m_ctx))
         {
@@ -138,9 +138,8 @@ namespace zdunk
         SetThis(this);
         ZDUNK_ASSERT(m_state != EXEC);
         m_state = EXEC;
-
-        if (swapcontext(&Scheduler::GetMainFiber()->m_ctx, &m_ctx))
         // if (swapcontext(&t_threadFiber->m_ctx, &m_ctx))
+        if (swapcontext(&Scheduler::GetMainFiber()->m_ctx, &m_ctx))
         {
             ZDUNK_ASSERT2(false, "swapecontext error");
         }
@@ -148,15 +147,20 @@ namespace zdunk
 
     void Fiber::swapOut()
     {
+        // SetThis(t_threadFiber.get());
         SetThis(Scheduler::GetMainFiber());
-        // m_state = HOLD;
-        if (swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx))
         // if (swapcontext(&m_ctx, &t_threadFiber->m_ctx))
+        if (swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx))
         {
             ZDUNK_ASSERT2(false, "swapecontext error");
         }
     }
 
+    // t_threadFiber -- ("线程主协程"，即当前的线程的主协程)
+    // t_fiber -- ("线程活跃协程"， 即当前线程的活跃协程)
+    // 开始的开始，需要一个GetThis()，这个静态方法在最开始开辟出了主协程，同时将thread_loacl的主协程设置上去
+    // GetThis() 后来是获取当当前的活跃线程
+    // SetThis() 只有一个作用是设置活跃协程
     Fiber::ptr Fiber::GetThis()
     {
         if (t_fiber)
@@ -185,7 +189,7 @@ namespace zdunk
     {
         Fiber::ptr cur = GetThis();
         ZDUNK_ASSERT(cur->getState() == EXEC);
-        // cur->m_state = HOLD;
+        cur->m_state = HOLD;
         cur->swapOut();
     }
 

@@ -21,6 +21,7 @@ set(LIB_SRC
     zdunk/fiber.cc
     zdunk/scheduler.cc
     zdunk/iomanager.cc
+    zdunk/timer.cc
     )
 
 add_library(zdunk SHARED ${LIB_SRC})

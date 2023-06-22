@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "/home/zdunk/workspace/zdunking/bin/test_fiber"
+			"path" : "/home/zdunk/workspace/zdunking/bin/test_iomanager"
 		}
 	],
 	"backtrace" : 1,
@@ -26,19 +26,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 57,
+				"line" : 66,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 59,
+				"line" : 68,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 58,
+				"line" : 67,
 				"parent" : 0
 			}
 		]
@@ -66,7 +66,7 @@
 			"id" : "zdunk::@6890427a1f51a3e7e1df"
 		}
 	],
-	"id" : "test_fiber::@6890427a1f51a3e7e1df",
+	"id" : "test_iomanager::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -99,8 +99,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "test_fiber",
-	"nameOnDisk" : "test_fiber",
+	"name" : "test_iomanager",
+	"nameOnDisk" : "test_iomanager",
 	"paths" : 
 	{
 		"build" : ".",
@@ -121,7 +121,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "tests/test_fiber.cc",
+			"path" : "tests/test_iomanager.cc",
 			"sourceGroupIndex" : 0
 		}
 	],

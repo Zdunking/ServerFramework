@@ -29,6 +29,7 @@ CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o: ../zdunk/noncopyable.h
 CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o: ../zdunk/scheduler.h
 CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o: ../zdunk/singleton.h
 CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o: ../zdunk/thread.h
+CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o: ../zdunk/timer.h
 CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o: ../zdunk/utils.h
 
 CMakeFiles/zdunk.dir/zdunk/log.cc.o: ../zdunk/config.h
@@ -55,6 +56,12 @@ CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/singleton.h
 CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/thread.cc
 CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/thread.h
 CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/utils.h
+
+CMakeFiles/zdunk.dir/zdunk/timer.cc.o: ../zdunk/noncopyable.h
+CMakeFiles/zdunk.dir/zdunk/timer.cc.o: ../zdunk/thread.h
+CMakeFiles/zdunk.dir/zdunk/timer.cc.o: ../zdunk/timer.cc
+CMakeFiles/zdunk.dir/zdunk/timer.cc.o: ../zdunk/timer.h
+CMakeFiles/zdunk.dir/zdunk/timer.cc.o: ../zdunk/utils.h
 
 CMakeFiles/zdunk.dir/zdunk/utils.cc.o: ../zdunk/fiber.h
 CMakeFiles/zdunk.dir/zdunk/utils.cc.o: ../zdunk/log.h

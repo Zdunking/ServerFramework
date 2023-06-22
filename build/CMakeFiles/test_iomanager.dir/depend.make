@@ -12,5 +12,6 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../zdunk/pch.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../zdunk/scheduler.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../zdunk/singleton.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../zdunk/thread.h
+CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../zdunk/timer.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: ../zdunk/utils.h
 

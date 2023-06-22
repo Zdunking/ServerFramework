@@ -29,6 +29,7 @@ void fun2()
     while (1)
     {
         LOG_TRACE << "**********************************";
+        sleep(1);
     }
 }
 
@@ -37,6 +38,7 @@ void fun3()
     while (1)
     {
         LOG_TRACE << "----------------------------------";
+        sleep(1);
     }
 }
 
@@ -46,13 +48,17 @@ int main()
     std::vector<zdunk::Thread::ptr> thrs;
     YAML::Node root = YAML::LoadFile("/home/zdunk/workspace/zdunking/bin/conf/log2.yml");
     zdunk::Config::LoadFromYaml(root);
-    for (int i = 0; i < 2; i++)
-    {
-        zdunk::Thread::ptr thr(new zdunk::Thread(&fun2, "name_" + std::to_string(i * 2)));
-        zdunk::Thread::ptr thr2(new zdunk::Thread(&fun3, "name_" + std::to_string(i * 2 + 1)));
-        thrs.push_back(thr);
-        thrs.push_back(thr2);
-    }
+    // for (int i = 0; i < 2; i++)
+    // {
+    //     zdunk::Thread::ptr thr(new zdunk::Thread(&fun2, "name1" /*"name_" + std::to_string(i * 2)*/));
+    //     zdunk::Thread::ptr thr2(new zdunk::Thread(&fun3, "name2" /*"name_" + std::to_string(i * 2 + 1)*/));
+    //     thrs.push_back(thr);
+    //     thrs.push_back(thr2);
+    // }
+    zdunk::Thread::ptr thr(new zdunk::Thread(&fun2, "name1" /*"name_" + std::to_string(i * 2)*/));
+    zdunk::Thread::ptr thr2(new zdunk::Thread(&fun3, "name2" /*"name_" + std::to_string(i * 2 + 1)*/));
+    thrs.push_back(thr);
+    thrs.push_back(thr2);
 
     for (auto i : thrs)
     {
