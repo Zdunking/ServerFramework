@@ -23,7 +23,7 @@ namespace zdunk
         int addEvent(int fd, Event event, std::function<void()> cb = nullptr);
         bool delEvent(int fd, Event event);
         bool cancelEvent(int fd, Event event);
-        bool cancleAll(int fd);
+        bool cancelAll(int fd);
 
         static IOManager *GetThis();
 

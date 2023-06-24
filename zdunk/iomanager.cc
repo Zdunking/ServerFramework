@@ -236,7 +236,7 @@ namespace zdunk
         return true;
     }
 
-    bool IOManager::cancleAll(int fd)
+    bool IOManager::cancelAll(int fd)
     {
 
         RWMutexType::ReadLock lock(m_mutex);

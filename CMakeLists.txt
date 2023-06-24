@@ -22,6 +22,8 @@ set(LIB_SRC
     zdunk/scheduler.cc
     zdunk/iomanager.cc
     zdunk/timer.cc
+    zdunk/fd_manager.cc
+    zdunk/hook.cc
     )
 
 add_library(zdunk SHARED ${LIB_SRC})
@@ -32,6 +34,7 @@ set(
     LIB_LIB
     zdunk
     pthread
+    dl
     ${YAMLCPP}
 )
 
@@ -66,6 +69,10 @@ target_link_libraries(test_scheduler ${LIB_LIB})
 add_executable(test_iomanager tests/test_iomanager.cc)
 add_dependencies(test_iomanager zdunk)
 target_link_libraries(test_iomanager ${LIB_LIB})
+
+add_executable(test_hook tests/test_hook.cc)
+add_dependencies(test_hook zdunk)
+target_link_libraries(test_hook ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

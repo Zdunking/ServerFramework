@@ -1,6 +1,7 @@
 #include "scheduler.h"
 #include "log.h"
 #include "macro.h"
+#include "hook.h"
 
 namespace zdunk
 {
@@ -138,6 +139,7 @@ namespace zdunk
     void Scheduler::run()
     {
         LOG_INFO(g_logger) << "run";
+        set_hook_enable(true);
         setThis();
         if (zdunk::GetThreadId() != m_rootThread)
         {

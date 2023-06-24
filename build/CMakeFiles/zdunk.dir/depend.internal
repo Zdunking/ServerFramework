@@ -9,6 +9,17 @@ CMakeFiles/zdunk.dir/zdunk/config.cc.o
  /home/zdunk/workspace/zdunking/zdunk/singleton.h
  /home/zdunk/workspace/zdunking/zdunk/thread.h
  /home/zdunk/workspace/zdunking/zdunk/utils.h
+CMakeFiles/zdunk.dir/zdunk/fd_manager.cc.o
+ /home/zdunk/workspace/zdunking/zdunk/fd_manager.cc
+ /home/zdunk/workspace/zdunking/zdunk/fd_manager.h
+ /home/zdunk/workspace/zdunking/zdunk/fiber.h
+ /home/zdunk/workspace/zdunking/zdunk/hook.h
+ /home/zdunk/workspace/zdunking/zdunk/iomanager.h
+ /home/zdunk/workspace/zdunking/zdunk/noncopyable.h
+ /home/zdunk/workspace/zdunking/zdunk/scheduler.h
+ /home/zdunk/workspace/zdunking/zdunk/singleton.h
+ /home/zdunk/workspace/zdunking/zdunk/thread.h
+ /home/zdunk/workspace/zdunking/zdunk/timer.h
 CMakeFiles/zdunk.dir/zdunk/fiber.cc.o
  /home/zdunk/workspace/zdunking/zdunk/config.h
  /home/zdunk/workspace/zdunking/zdunk/fiber.cc
@@ -19,6 +30,21 @@ CMakeFiles/zdunk.dir/zdunk/fiber.cc.o
  /home/zdunk/workspace/zdunking/zdunk/scheduler.h
  /home/zdunk/workspace/zdunking/zdunk/singleton.h
  /home/zdunk/workspace/zdunking/zdunk/thread.h
+ /home/zdunk/workspace/zdunking/zdunk/utils.h
+CMakeFiles/zdunk.dir/zdunk/hook.cc.o
+ /home/zdunk/workspace/zdunking/zdunk/config.h
+ /home/zdunk/workspace/zdunking/zdunk/fd_manager.h
+ /home/zdunk/workspace/zdunking/zdunk/fiber.h
+ /home/zdunk/workspace/zdunking/zdunk/hook.cc
+ /home/zdunk/workspace/zdunking/zdunk/hook.h
+ /home/zdunk/workspace/zdunking/zdunk/iomanager.h
+ /home/zdunk/workspace/zdunking/zdunk/log.h
+ /home/zdunk/workspace/zdunking/zdunk/macro.h
+ /home/zdunk/workspace/zdunking/zdunk/noncopyable.h
+ /home/zdunk/workspace/zdunking/zdunk/scheduler.h
+ /home/zdunk/workspace/zdunking/zdunk/singleton.h
+ /home/zdunk/workspace/zdunking/zdunk/thread.h
+ /home/zdunk/workspace/zdunking/zdunk/timer.h
  /home/zdunk/workspace/zdunking/zdunk/utils.h
 CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o
  /home/zdunk/workspace/zdunking/zdunk/fiber.h
@@ -42,6 +68,7 @@ CMakeFiles/zdunk.dir/zdunk/log.cc.o
  /home/zdunk/workspace/zdunking/zdunk/utils.h
 CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o
  /home/zdunk/workspace/zdunking/zdunk/fiber.h
+ /home/zdunk/workspace/zdunking/zdunk/hook.h
  /home/zdunk/workspace/zdunking/zdunk/log.h
  /home/zdunk/workspace/zdunking/zdunk/macro.h
  /home/zdunk/workspace/zdunking/zdunk/noncopyable.h

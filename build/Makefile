@@ -114,6 +114,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named test_hook
+
+# Build rule for target.
+test_hook: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_hook
+.PHONY : test_hook
+
+# fast build rule for target.
+test_hook/fast:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
+.PHONY : test_hook/fast
+
+#=============================================================================
 # Target rules for targets named test_iomanager
 
 # Build rule for target.
@@ -298,6 +311,33 @@ tests/test_fiber.cc.s:
 	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
 .PHONY : tests/test_fiber.cc.s
 
+tests/test_hook.o: tests/test_hook.cc.o
+
+.PHONY : tests/test_hook.o
+
+# target to build an object file
+tests/test_hook.cc.o:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.o
+.PHONY : tests/test_hook.cc.o
+
+tests/test_hook.i: tests/test_hook.cc.i
+
+.PHONY : tests/test_hook.i
+
+# target to preprocess a source file
+tests/test_hook.cc.i:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.i
+.PHONY : tests/test_hook.cc.i
+
+tests/test_hook.s: tests/test_hook.cc.s
+
+.PHONY : tests/test_hook.s
+
+# target to generate assembly for a file
+tests/test_hook.cc.s:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.s
+.PHONY : tests/test_hook.cc.s
+
 tests/test_iomanager.o: tests/test_iomanager.cc.o
 
 .PHONY : tests/test_iomanager.o
@@ -433,6 +473,33 @@ zdunk/config.cc.s:
 	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/config.cc.s
 .PHONY : zdunk/config.cc.s
 
+zdunk/fd_manager.o: zdunk/fd_manager.cc.o
+
+.PHONY : zdunk/fd_manager.o
+
+# target to build an object file
+zdunk/fd_manager.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/fd_manager.cc.o
+.PHONY : zdunk/fd_manager.cc.o
+
+zdunk/fd_manager.i: zdunk/fd_manager.cc.i
+
+.PHONY : zdunk/fd_manager.i
+
+# target to preprocess a source file
+zdunk/fd_manager.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/fd_manager.cc.i
+.PHONY : zdunk/fd_manager.cc.i
+
+zdunk/fd_manager.s: zdunk/fd_manager.cc.s
+
+.PHONY : zdunk/fd_manager.s
+
+# target to generate assembly for a file
+zdunk/fd_manager.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/fd_manager.cc.s
+.PHONY : zdunk/fd_manager.cc.s
+
 zdunk/fiber.o: zdunk/fiber.cc.o
 
 .PHONY : zdunk/fiber.o
@@ -459,6 +526,33 @@ zdunk/fiber.s: zdunk/fiber.cc.s
 zdunk/fiber.cc.s:
 	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/fiber.cc.s
 .PHONY : zdunk/fiber.cc.s
+
+zdunk/hook.o: zdunk/hook.cc.o
+
+.PHONY : zdunk/hook.o
+
+# target to build an object file
+zdunk/hook.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/hook.cc.o
+.PHONY : zdunk/hook.cc.o
+
+zdunk/hook.i: zdunk/hook.cc.i
+
+.PHONY : zdunk/hook.i
+
+# target to preprocess a source file
+zdunk/hook.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/hook.cc.i
+.PHONY : zdunk/hook.cc.i
+
+zdunk/hook.s: zdunk/hook.cc.s
+
+.PHONY : zdunk/hook.s
+
+# target to generate assembly for a file
+zdunk/hook.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/hook.cc.s
+.PHONY : zdunk/hook.cc.s
 
 zdunk/iomanager.o: zdunk/iomanager.cc.o
 
@@ -629,6 +723,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... test_hook"
 	@echo "... test_iomanager"
 	@echo "... rebuild_cache"
 	@echo "... test_scheduler"
@@ -647,6 +742,9 @@ help:
 	@echo "... tests/test_fiber.o"
 	@echo "... tests/test_fiber.i"
 	@echo "... tests/test_fiber.s"
+	@echo "... tests/test_hook.o"
+	@echo "... tests/test_hook.i"
+	@echo "... tests/test_hook.s"
 	@echo "... tests/test_iomanager.o"
 	@echo "... tests/test_iomanager.i"
 	@echo "... tests/test_iomanager.s"
@@ -662,9 +760,15 @@ help:
 	@echo "... zdunk/config.o"
 	@echo "... zdunk/config.i"
 	@echo "... zdunk/config.s"
+	@echo "... zdunk/fd_manager.o"
+	@echo "... zdunk/fd_manager.i"
+	@echo "... zdunk/fd_manager.s"
 	@echo "... zdunk/fiber.o"
 	@echo "... zdunk/fiber.i"
 	@echo "... zdunk/fiber.s"
+	@echo "... zdunk/hook.o"
+	@echo "... zdunk/hook.i"
+	@echo "... zdunk/hook.s"
 	@echo "... zdunk/iomanager.o"
 	@echo "... zdunk/iomanager.i"
 	@echo "... zdunk/iomanager.s"

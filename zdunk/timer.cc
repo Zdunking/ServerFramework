@@ -127,7 +127,7 @@ namespace zdunk
         }
     }
 
-    Timer::ptr TimerManager::addContionTimer(uint64_t ms, std::function<void()> cb, std::weak_ptr<void> weak_cond, bool recurring /* = false*/)
+    Timer::ptr TimerManager::addConditionTimer(uint64_t ms, std::function<void()> cb, std::weak_ptr<void> weak_cond, bool recurring /* = false*/)
     {
         return addTimer(ms, std::bind(&OnTimer, weak_cond, cb), recurring);
     }

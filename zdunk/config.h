@@ -7,6 +7,7 @@
 #include <functional>
 #include <boost/lexical_cast.hpp>
 #include <yaml-cpp/yaml.h>
+#include "thread.h"
 #include "log.h"
 
 namespace zdunk
@@ -273,7 +274,7 @@ namespace zdunk
     {
     public:
         typedef std::shared_ptr<ConfigVar> ptr;
-
+        typedef RWMutex RWMutexType;
         typedef std::function<void(const T &old_value, const T &new_value)> on_change_cb;
 
         ConfigVar(const std::string &name, const T &default_value, const std::string &description = "") : ConfigVarBase(name, description), m_val(default_value){};
@@ -324,28 +325,36 @@ namespace zdunk
         }
         std::string getTypeName() const override { return typeid(T).name(); }
 
-        void addListener(uint64_t key, on_change_cb cb)
+        uint64_t addListener(on_change_cb cb)
         {
-            m_cbs[key] = cb;
+            static uint64_t s_fun_id = 0;
+            RWMutexType::WriteLock lock(m_mutex);
+            ++s_fun_id;
+            m_cbs[s_fun_id] = cb;
+            return s_fun_id;
         }
 
         void delLisrener(uint64_t key)
         {
+            RWMutexType::WriteLock lock(m_mutex);
             m_cbs.erase(key);
         }
 
         on_change_cb getListener(uint64_t key)
         {
+            RWMutexType::ReadLock lock(m_mutex);
             auto it = m_cbs.find(key);
             return it == m_cbs.end() ? nullptr : it.second;
         }
 
         void clearListener()
         {
+            RWMutexType::WriteLock lock(m_mutex);
             m_cbs.clear();
         }
 
     private:
+        RWMutexType m_mutex;
         T m_val;
 
         // 变更回调函数组， uint_64 key,要求唯一，一般可以用hash

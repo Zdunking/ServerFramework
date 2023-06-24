@@ -25,6 +25,8 @@ boost/lexical_cast.hpp
 -
 yaml-cpp/yaml.h
 -
+thread.h
+/home/zdunk/workspace/zdunking/zdunk/thread.h
 log.h
 /home/zdunk/workspace/zdunking/zdunk/log.h
 

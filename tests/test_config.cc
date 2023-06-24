@@ -194,7 +194,7 @@ void test_class()
         LOG_INFO(LOG_ROOT()) << prefix << ": size=" << m.size();                               \
     }
 
-    g_person->addListener(10, [](const Person &old_value, const Person &new_value)
+    g_person->addListener([](const Person &old_value, const Person &new_value)
                           { LOG_INFO(LOG_ROOT()) << "old_value=" << old_value.toString() << " new_value=" << new_value.toString(); });
 
     XX_PM(g_person_map, "class.map before")

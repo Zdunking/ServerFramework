@@ -1,4 +1,5 @@
 /home/zdunk/workspace/zdunking/build/CMakeFiles/edit_cache.dir
+/home/zdunk/workspace/zdunking/build/CMakeFiles/test_hook.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/test_iomanager.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/rebuild_cache.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/test_scheduler.dir
