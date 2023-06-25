@@ -62,7 +62,14 @@
         "condition_variable": "cpp",
         "ratio": "cpp",
         "mutex": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "forward_list": "cpp",
+        "buffer": "cpp",
+        "executor": "cpp",
+        "io_context": "cpp",
+        "netfwd": "cpp",
+        "socket": "cpp",
+        "future": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

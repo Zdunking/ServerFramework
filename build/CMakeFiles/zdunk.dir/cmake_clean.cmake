@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "../lib/libzdunk.pdb"
   "../lib/libzdunk.so"
+  "CMakeFiles/zdunk.dir/zdunk/address.cc.o"
   "CMakeFiles/zdunk.dir/zdunk/config.cc.o"
   "CMakeFiles/zdunk.dir/zdunk/fd_manager.cc.o"
   "CMakeFiles/zdunk.dir/zdunk/fiber.cc.o"

@@ -1,23 +1,18 @@
 [
 {
   "directory": "/home/zdunk/workspace/zdunking/build",
-  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_hook.dir/tests/test_hook.cc.o -c /home/zdunk/workspace/zdunking/tests/test_hook.cc",
-  "file": "/home/zdunk/workspace/zdunking/tests/test_hook.cc"
+  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_thread.dir/tests/test_thread.cc.o -c /home/zdunk/workspace/zdunking/tests/test_thread.cc",
+  "file": "/home/zdunk/workspace/zdunking/tests/test_thread.cc"
 },
 {
   "directory": "/home/zdunk/workspace/zdunking/build",
-  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o -c /home/zdunk/workspace/zdunking/tests/test_iomanager.cc",
-  "file": "/home/zdunk/workspace/zdunking/tests/test_iomanager.cc"
+  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test.dir/tests/test.cc.o -c /home/zdunk/workspace/zdunking/tests/test.cc",
+  "file": "/home/zdunk/workspace/zdunking/tests/test.cc"
 },
 {
   "directory": "/home/zdunk/workspace/zdunking/build",
-  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o -c /home/zdunk/workspace/zdunking/tests/test_scheduler.cc",
-  "file": "/home/zdunk/workspace/zdunking/tests/test_scheduler.cc"
-},
-{
-  "directory": "/home/zdunk/workspace/zdunking/build",
-  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o -c /home/zdunk/workspace/zdunking/tests/test_fiber.cc",
-  "file": "/home/zdunk/workspace/zdunking/tests/test_fiber.cc"
+  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_utils.dir/tests/test_utils.cc.o -c /home/zdunk/workspace/zdunking/tests/test_utils.cc",
+  "file": "/home/zdunk/workspace/zdunking/tests/test_utils.cc"
 },
 {
   "directory": "/home/zdunk/workspace/zdunking/build",
@@ -71,22 +66,37 @@
 },
 {
   "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++  -Dzdunk_EXPORTS   -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g -fPIC   -o CMakeFiles/zdunk.dir/zdunk/address.cc.o -c /home/zdunk/workspace/zdunking/zdunk/address.cc",
+  "file": "/home/zdunk/workspace/zdunking/zdunk/address.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o -c /home/zdunk/workspace/zdunking/tests/test_fiber.cc",
+  "file": "/home/zdunk/workspace/zdunking/tests/test_fiber.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o -c /home/zdunk/workspace/zdunking/tests/test_scheduler.cc",
+  "file": "/home/zdunk/workspace/zdunking/tests/test_scheduler.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o -c /home/zdunk/workspace/zdunking/tests/test_iomanager.cc",
+  "file": "/home/zdunk/workspace/zdunking/tests/test_iomanager.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_address.dir/tests/test_address.cc.o -c /home/zdunk/workspace/zdunking/tests/test_address.cc",
+  "file": "/home/zdunk/workspace/zdunking/tests/test_address.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
   "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_config.dir/tests/test_config.cc.o -c /home/zdunk/workspace/zdunking/tests/test_config.cc",
   "file": "/home/zdunk/workspace/zdunking/tests/test_config.cc"
 },
 {
   "directory": "/home/zdunk/workspace/zdunking/build",
-  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_utils.dir/tests/test_utils.cc.o -c /home/zdunk/workspace/zdunking/tests/test_utils.cc",
-  "file": "/home/zdunk/workspace/zdunking/tests/test_utils.cc"
-},
-{
-  "directory": "/home/zdunk/workspace/zdunking/build",
-  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test.dir/tests/test.cc.o -c /home/zdunk/workspace/zdunking/tests/test.cc",
-  "file": "/home/zdunk/workspace/zdunking/tests/test.cc"
-},
-{
-  "directory": "/home/zdunk/workspace/zdunking/build",
-  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_thread.dir/tests/test_thread.cc.o -c /home/zdunk/workspace/zdunking/tests/test_thread.cc",
-  "file": "/home/zdunk/workspace/zdunking/tests/test_thread.cc"
+  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_hook.dir/tests/test_hook.cc.o -c /home/zdunk/workspace/zdunking/tests/test_hook.cc",
+  "file": "/home/zdunk/workspace/zdunking/tests/test_hook.cc"
 }
 ]

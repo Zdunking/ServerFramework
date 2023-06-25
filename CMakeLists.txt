@@ -24,6 +24,7 @@ set(LIB_SRC
     zdunk/timer.cc
     zdunk/fd_manager.cc
     zdunk/hook.cc
+    zdunk/address.cc
     )
 
 add_library(zdunk SHARED ${LIB_SRC})
@@ -73,6 +74,10 @@ target_link_libraries(test_iomanager ${LIB_LIB})
 add_executable(test_hook tests/test_hook.cc)
 add_dependencies(test_hook zdunk)
 target_link_libraries(test_hook ${LIB_LIB})
+
+add_executable(test_address tests/test_address.cc)
+add_dependencies(test_address zdunk)
+target_link_libraries(test_address ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

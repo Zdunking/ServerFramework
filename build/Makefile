@@ -59,17 +59,6 @@ CMAKE_BINARY_DIR = /home/zdunk/workspace/zdunking/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/apps/stone/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -80,6 +69,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/apps/stone/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -114,95 +114,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_hook
+# Target rules for targets named test_thread
 
 # Build rule for target.
-test_hook: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_hook
-.PHONY : test_hook
+test_thread: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_thread
+.PHONY : test_thread
 
 # fast build rule for target.
-test_hook/fast:
-	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
-.PHONY : test_hook/fast
-
-#=============================================================================
-# Target rules for targets named test_iomanager
-
-# Build rule for target.
-test_iomanager: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_iomanager
-.PHONY : test_iomanager
-
-# fast build rule for target.
-test_iomanager/fast:
-	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/build
-.PHONY : test_iomanager/fast
-
-#=============================================================================
-# Target rules for targets named test_scheduler
-
-# Build rule for target.
-test_scheduler: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_scheduler
-.PHONY : test_scheduler
-
-# fast build rule for target.
-test_scheduler/fast:
-	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
-.PHONY : test_scheduler/fast
-
-#=============================================================================
-# Target rules for targets named test_fiber
-
-# Build rule for target.
-test_fiber: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_fiber
-.PHONY : test_fiber
-
-# fast build rule for target.
-test_fiber/fast:
-	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
-.PHONY : test_fiber/fast
-
-#=============================================================================
-# Target rules for targets named zdunk
-
-# Build rule for target.
-zdunk: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 zdunk
-.PHONY : zdunk
-
-# fast build rule for target.
-zdunk/fast:
-	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/build
-.PHONY : zdunk/fast
-
-#=============================================================================
-# Target rules for targets named test_config
-
-# Build rule for target.
-test_config: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_config
-.PHONY : test_config
-
-# fast build rule for target.
-test_config/fast:
-	$(MAKE) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/build
-.PHONY : test_config/fast
-
-#=============================================================================
-# Target rules for targets named test_utils
-
-# Build rule for target.
-test_utils: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_utils
-.PHONY : test_utils
-
-# fast build rule for target.
-test_utils/fast:
-	$(MAKE) -f CMakeFiles/test_utils.dir/build.make CMakeFiles/test_utils.dir/build
-.PHONY : test_utils/fast
+test_thread/fast:
+	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
+.PHONY : test_thread/fast
 
 #=============================================================================
 # Target rules for targets named test
@@ -218,17 +140,108 @@ test/fast:
 .PHONY : test/fast
 
 #=============================================================================
-# Target rules for targets named test_thread
+# Target rules for targets named test_utils
 
 # Build rule for target.
-test_thread: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_thread
-.PHONY : test_thread
+test_utils: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_utils
+.PHONY : test_utils
 
 # fast build rule for target.
-test_thread/fast:
-	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
-.PHONY : test_thread/fast
+test_utils/fast:
+	$(MAKE) -f CMakeFiles/test_utils.dir/build.make CMakeFiles/test_utils.dir/build
+.PHONY : test_utils/fast
+
+#=============================================================================
+# Target rules for targets named zdunk
+
+# Build rule for target.
+zdunk: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 zdunk
+.PHONY : zdunk
+
+# fast build rule for target.
+zdunk/fast:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/build
+.PHONY : zdunk/fast
+
+#=============================================================================
+# Target rules for targets named test_fiber
+
+# Build rule for target.
+test_fiber: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_fiber
+.PHONY : test_fiber
+
+# fast build rule for target.
+test_fiber/fast:
+	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
+.PHONY : test_fiber/fast
+
+#=============================================================================
+# Target rules for targets named test_scheduler
+
+# Build rule for target.
+test_scheduler: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_scheduler
+.PHONY : test_scheduler
+
+# fast build rule for target.
+test_scheduler/fast:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
+.PHONY : test_scheduler/fast
+
+#=============================================================================
+# Target rules for targets named test_iomanager
+
+# Build rule for target.
+test_iomanager: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_iomanager
+.PHONY : test_iomanager
+
+# fast build rule for target.
+test_iomanager/fast:
+	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/build
+.PHONY : test_iomanager/fast
+
+#=============================================================================
+# Target rules for targets named test_address
+
+# Build rule for target.
+test_address: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_address
+.PHONY : test_address
+
+# fast build rule for target.
+test_address/fast:
+	$(MAKE) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/build
+.PHONY : test_address/fast
+
+#=============================================================================
+# Target rules for targets named test_config
+
+# Build rule for target.
+test_config: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_config
+.PHONY : test_config
+
+# fast build rule for target.
+test_config/fast:
+	$(MAKE) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/build
+.PHONY : test_config/fast
+
+#=============================================================================
+# Target rules for targets named test_hook
+
+# Build rule for target.
+test_hook: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_hook
+.PHONY : test_hook
+
+# fast build rule for target.
+test_hook/fast:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
+.PHONY : test_hook/fast
 
 tests/test.o: tests/test.cc.o
 
@@ -256,6 +269,33 @@ tests/test.s: tests/test.cc.s
 tests/test.cc.s:
 	$(MAKE) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tests/test.cc.s
 .PHONY : tests/test.cc.s
+
+tests/test_address.o: tests/test_address.cc.o
+
+.PHONY : tests/test_address.o
+
+# target to build an object file
+tests/test_address.cc.o:
+	$(MAKE) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cc.o
+.PHONY : tests/test_address.cc.o
+
+tests/test_address.i: tests/test_address.cc.i
+
+.PHONY : tests/test_address.i
+
+# target to preprocess a source file
+tests/test_address.cc.i:
+	$(MAKE) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cc.i
+.PHONY : tests/test_address.cc.i
+
+tests/test_address.s: tests/test_address.cc.s
+
+.PHONY : tests/test_address.s
+
+# target to generate assembly for a file
+tests/test_address.cc.s:
+	$(MAKE) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cc.s
+.PHONY : tests/test_address.cc.s
 
 tests/test_config.o: tests/test_config.cc.o
 
@@ -445,6 +485,33 @@ tests/test_utils.s: tests/test_utils.cc.s
 tests/test_utils.cc.s:
 	$(MAKE) -f CMakeFiles/test_utils.dir/build.make CMakeFiles/test_utils.dir/tests/test_utils.cc.s
 .PHONY : tests/test_utils.cc.s
+
+zdunk/address.o: zdunk/address.cc.o
+
+.PHONY : zdunk/address.o
+
+# target to build an object file
+zdunk/address.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/address.cc.o
+.PHONY : zdunk/address.cc.o
+
+zdunk/address.i: zdunk/address.cc.i
+
+.PHONY : zdunk/address.i
+
+# target to preprocess a source file
+zdunk/address.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/address.cc.i
+.PHONY : zdunk/address.cc.i
+
+zdunk/address.s: zdunk/address.cc.s
+
+.PHONY : zdunk/address.s
+
+# target to generate assembly for a file
+zdunk/address.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/address.cc.s
+.PHONY : zdunk/address.cc.s
 
 zdunk/config.o: zdunk/config.cc.o
 
@@ -722,20 +789,24 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
-	@echo "... test_hook"
-	@echo "... test_iomanager"
 	@echo "... rebuild_cache"
-	@echo "... test_scheduler"
-	@echo "... test_fiber"
-	@echo "... zdunk"
-	@echo "... test_config"
-	@echo "... test_utils"
-	@echo "... test"
 	@echo "... test_thread"
+	@echo "... test"
+	@echo "... test_utils"
+	@echo "... zdunk"
+	@echo "... test_fiber"
+	@echo "... test_scheduler"
+	@echo "... test_iomanager"
+	@echo "... test_address"
+	@echo "... test_config"
+	@echo "... test_hook"
+	@echo "... edit_cache"
 	@echo "... tests/test.o"
 	@echo "... tests/test.i"
 	@echo "... tests/test.s"
+	@echo "... tests/test_address.o"
+	@echo "... tests/test_address.i"
+	@echo "... tests/test_address.s"
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"
@@ -757,6 +828,9 @@ help:
 	@echo "... tests/test_utils.o"
 	@echo "... tests/test_utils.i"
 	@echo "... tests/test_utils.s"
+	@echo "... zdunk/address.o"
+	@echo "... zdunk/address.i"
+	@echo "... zdunk/address.s"
 	@echo "... zdunk/config.o"
 	@echo "... zdunk/config.i"
 	@echo "... zdunk/config.s"
