@@ -7,7 +7,7 @@
 namespace zdunk
 {
 
-    zdunk::Logger::ptr g_logger = LOG_NAME("system");
+    static zdunk::Logger::ptr g_logger = LOG_NAME("system");
 
     pid_t GetThreadId()
     {

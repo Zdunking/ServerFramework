@@ -59,17 +59,6 @@ CMAKE_BINARY_DIR = /home/zdunk/workspace/zdunking/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/apps/stone/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
@@ -80,6 +69,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/apps/stone/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -114,17 +114,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named test_thread
+# Target rules for targets named test_bytearray
 
 # Build rule for target.
-test_thread: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_thread
-.PHONY : test_thread
+test_bytearray: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_bytearray
+.PHONY : test_bytearray
 
 # fast build rule for target.
-test_thread/fast:
-	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
-.PHONY : test_thread/fast
+test_bytearray/fast:
+	$(MAKE) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/build
+.PHONY : test_bytearray/fast
 
 #=============================================================================
 # Target rules for targets named test
@@ -151,6 +151,32 @@ test_utils: cmake_check_build_system
 test_utils/fast:
 	$(MAKE) -f CMakeFiles/test_utils.dir/build.make CMakeFiles/test_utils.dir/build
 .PHONY : test_utils/fast
+
+#=============================================================================
+# Target rules for targets named test_thread
+
+# Build rule for target.
+test_thread: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_thread
+.PHONY : test_thread
+
+# fast build rule for target.
+test_thread/fast:
+	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
+.PHONY : test_thread/fast
+
+#=============================================================================
+# Target rules for targets named test_socket
+
+# Build rule for target.
+test_socket: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_socket
+.PHONY : test_socket
+
+# fast build rule for target.
+test_socket/fast:
+	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/build
+.PHONY : test_socket/fast
 
 #=============================================================================
 # Target rules for targets named zdunk
@@ -297,6 +323,33 @@ tests/test_address.cc.s:
 	$(MAKE) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cc.s
 .PHONY : tests/test_address.cc.s
 
+tests/test_bytearray.o: tests/test_bytearray.cc.o
+
+.PHONY : tests/test_bytearray.o
+
+# target to build an object file
+tests/test_bytearray.cc.o:
+	$(MAKE) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.o
+.PHONY : tests/test_bytearray.cc.o
+
+tests/test_bytearray.i: tests/test_bytearray.cc.i
+
+.PHONY : tests/test_bytearray.i
+
+# target to preprocess a source file
+tests/test_bytearray.cc.i:
+	$(MAKE) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.i
+.PHONY : tests/test_bytearray.cc.i
+
+tests/test_bytearray.s: tests/test_bytearray.cc.s
+
+.PHONY : tests/test_bytearray.s
+
+# target to generate assembly for a file
+tests/test_bytearray.cc.s:
+	$(MAKE) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.s
+.PHONY : tests/test_bytearray.cc.s
+
 tests/test_config.o: tests/test_config.cc.o
 
 .PHONY : tests/test_config.o
@@ -432,6 +485,33 @@ tests/test_scheduler.cc.s:
 	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.s
 .PHONY : tests/test_scheduler.cc.s
 
+tests/test_socket.o: tests/test_socket.cc.o
+
+.PHONY : tests/test_socket.o
+
+# target to build an object file
+tests/test_socket.cc.o:
+	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/tests/test_socket.cc.o
+.PHONY : tests/test_socket.cc.o
+
+tests/test_socket.i: tests/test_socket.cc.i
+
+.PHONY : tests/test_socket.i
+
+# target to preprocess a source file
+tests/test_socket.cc.i:
+	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/tests/test_socket.cc.i
+.PHONY : tests/test_socket.cc.i
+
+tests/test_socket.s: tests/test_socket.cc.s
+
+.PHONY : tests/test_socket.s
+
+# target to generate assembly for a file
+tests/test_socket.cc.s:
+	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/tests/test_socket.cc.s
+.PHONY : tests/test_socket.cc.s
+
 tests/test_thread.o: tests/test_thread.cc.o
 
 .PHONY : tests/test_thread.o
@@ -512,6 +592,33 @@ zdunk/address.s: zdunk/address.cc.s
 zdunk/address.cc.s:
 	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/address.cc.s
 .PHONY : zdunk/address.cc.s
+
+zdunk/bytearray.o: zdunk/bytearray.cc.o
+
+.PHONY : zdunk/bytearray.o
+
+# target to build an object file
+zdunk/bytearray.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/bytearray.cc.o
+.PHONY : zdunk/bytearray.cc.o
+
+zdunk/bytearray.i: zdunk/bytearray.cc.i
+
+.PHONY : zdunk/bytearray.i
+
+# target to preprocess a source file
+zdunk/bytearray.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/bytearray.cc.i
+.PHONY : zdunk/bytearray.cc.i
+
+zdunk/bytearray.s: zdunk/bytearray.cc.s
+
+.PHONY : zdunk/bytearray.s
+
+# target to generate assembly for a file
+zdunk/bytearray.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/bytearray.cc.s
+.PHONY : zdunk/bytearray.cc.s
 
 zdunk/config.o: zdunk/config.cc.o
 
@@ -702,6 +809,33 @@ zdunk/scheduler.cc.s:
 	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/scheduler.cc.s
 .PHONY : zdunk/scheduler.cc.s
 
+zdunk/socket.o: zdunk/socket.cc.o
+
+.PHONY : zdunk/socket.o
+
+# target to build an object file
+zdunk/socket.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/socket.cc.o
+.PHONY : zdunk/socket.cc.o
+
+zdunk/socket.i: zdunk/socket.cc.i
+
+.PHONY : zdunk/socket.i
+
+# target to preprocess a source file
+zdunk/socket.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/socket.cc.i
+.PHONY : zdunk/socket.cc.i
+
+zdunk/socket.s: zdunk/socket.cc.s
+
+.PHONY : zdunk/socket.s
+
+# target to generate assembly for a file
+zdunk/socket.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/socket.cc.s
+.PHONY : zdunk/socket.cc.s
+
 zdunk/thread.o: zdunk/thread.cc.o
 
 .PHONY : zdunk/thread.o
@@ -789,10 +923,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... test_thread"
+	@echo "... edit_cache"
+	@echo "... test_bytearray"
 	@echo "... test"
 	@echo "... test_utils"
+	@echo "... rebuild_cache"
+	@echo "... test_thread"
+	@echo "... test_socket"
 	@echo "... zdunk"
 	@echo "... test_fiber"
 	@echo "... test_scheduler"
@@ -800,13 +937,15 @@ help:
 	@echo "... test_address"
 	@echo "... test_config"
 	@echo "... test_hook"
-	@echo "... edit_cache"
 	@echo "... tests/test.o"
 	@echo "... tests/test.i"
 	@echo "... tests/test.s"
 	@echo "... tests/test_address.o"
 	@echo "... tests/test_address.i"
 	@echo "... tests/test_address.s"
+	@echo "... tests/test_bytearray.o"
+	@echo "... tests/test_bytearray.i"
+	@echo "... tests/test_bytearray.s"
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"
@@ -822,6 +961,9 @@ help:
 	@echo "... tests/test_scheduler.o"
 	@echo "... tests/test_scheduler.i"
 	@echo "... tests/test_scheduler.s"
+	@echo "... tests/test_socket.o"
+	@echo "... tests/test_socket.i"
+	@echo "... tests/test_socket.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"
@@ -831,6 +973,9 @@ help:
 	@echo "... zdunk/address.o"
 	@echo "... zdunk/address.i"
 	@echo "... zdunk/address.s"
+	@echo "... zdunk/bytearray.o"
+	@echo "... zdunk/bytearray.i"
+	@echo "... zdunk/bytearray.s"
 	@echo "... zdunk/config.o"
 	@echo "... zdunk/config.i"
 	@echo "... zdunk/config.s"
@@ -852,6 +997,9 @@ help:
 	@echo "... zdunk/scheduler.o"
 	@echo "... zdunk/scheduler.i"
 	@echo "... zdunk/scheduler.s"
+	@echo "... zdunk/socket.o"
+	@echo "... zdunk/socket.i"
+	@echo "... zdunk/socket.s"
 	@echo "... zdunk/thread.o"
 	@echo "... zdunk/thread.i"
 	@echo "... zdunk/thread.s"

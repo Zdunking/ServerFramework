@@ -1,0 +1,1 @@
+/apps/stone/bin/g++   -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g  -rdynamic CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.o  -o ../bin/test_bytearray  -Wl,-rpath,/home/zdunk/workspace/zdunking/lib ../lib/libzdunk.so -lpthread -ldl /usr/local/lib/libyaml-cpp.a 

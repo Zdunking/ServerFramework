@@ -5,11 +5,15 @@ CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../tests/test_socket.cc
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/address.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/config.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/fiber.h
+CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/iomanager.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/log.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/macro.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/noncopyable.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/pch.h
+CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/scheduler.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/singleton.h
+CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/socket.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/thread.h
+CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/timer.h
 CMakeFiles/test_socket.dir/tests/test_socket.cc.o: ../zdunk/utils.h
 

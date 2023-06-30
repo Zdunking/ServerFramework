@@ -25,6 +25,8 @@ set(LIB_SRC
     zdunk/fd_manager.cc
     zdunk/hook.cc
     zdunk/address.cc
+    zdunk/socket.cc
+    zdunk/bytearray.cc
     )
 
 add_library(zdunk SHARED ${LIB_SRC})
@@ -78,6 +80,14 @@ target_link_libraries(test_hook ${LIB_LIB})
 add_executable(test_address tests/test_address.cc)
 add_dependencies(test_address zdunk)
 target_link_libraries(test_address ${LIB_LIB})
+
+add_executable(test_socket tests/test_socket.cc)
+add_dependencies(test_socket zdunk)
+target_link_libraries(test_socket ${LIB_LIB})
+
+add_executable(test_bytearray tests/test_bytearray.cc)
+add_dependencies(test_bytearray zdunk)
+target_link_libraries(test_bytearray ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

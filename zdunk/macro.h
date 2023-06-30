@@ -15,7 +15,7 @@
 #endif
 
 #define ZDUNK_ASSERT(x)                                                    \
-    if (!(x))                                                              \
+    if (ZDUNK_UNLIKELY(!(x)))                                              \
     {                                                                      \
         LOG_ERROR(LOG_ROOT()) << "ASSERTION: " #x                          \
                               << "\nbacktrace:\n"                          \
@@ -24,7 +24,7 @@
     }
 
 #define ZDUNK_ASSERT2(x, w)                                                \
-    if (!(x))                                                              \
+    if (ZDUNK_UNLIKELY(!(x)))                                              \
     {                                                                      \
         LOG_ERROR(LOG_ROOT()) << "ASSERTION: " #x                          \
                               << "\nNOTICE : " << #w                       \

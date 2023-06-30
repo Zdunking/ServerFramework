@@ -10,6 +10,15 @@ CMakeFiles/zdunk.dir/zdunk/address.cc.o: ../zdunk/singleton.h
 CMakeFiles/zdunk.dir/zdunk/address.cc.o: ../zdunk/thread.h
 CMakeFiles/zdunk.dir/zdunk/address.cc.o: ../zdunk/utils.h
 
+CMakeFiles/zdunk.dir/zdunk/bytearray.cc.o: ../zdunk/bytearray.cc
+CMakeFiles/zdunk.dir/zdunk/bytearray.cc.o: ../zdunk/bytearray.h
+CMakeFiles/zdunk.dir/zdunk/bytearray.cc.o: ../zdunk/endian.h
+CMakeFiles/zdunk.dir/zdunk/bytearray.cc.o: ../zdunk/log.h
+CMakeFiles/zdunk.dir/zdunk/bytearray.cc.o: ../zdunk/noncopyable.h
+CMakeFiles/zdunk.dir/zdunk/bytearray.cc.o: ../zdunk/singleton.h
+CMakeFiles/zdunk.dir/zdunk/bytearray.cc.o: ../zdunk/thread.h
+CMakeFiles/zdunk.dir/zdunk/bytearray.cc.o: ../zdunk/utils.h
+
 CMakeFiles/zdunk.dir/zdunk/config.cc.o: ../zdunk/config.cc
 CMakeFiles/zdunk.dir/zdunk/config.cc.o: ../zdunk/config.h
 CMakeFiles/zdunk.dir/zdunk/config.cc.o: ../zdunk/log.h
@@ -85,6 +94,22 @@ CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o: ../zdunk/scheduler.h
 CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o: ../zdunk/singleton.h
 CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o: ../zdunk/thread.h
 CMakeFiles/zdunk.dir/zdunk/scheduler.cc.o: ../zdunk/utils.h
+
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/address.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/fd_manager.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/fiber.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/hook.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/iomanager.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/log.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/macro.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/noncopyable.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/scheduler.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/singleton.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/socket.cc
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/socket.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/thread.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/timer.h
+CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/utils.h
 
 CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/log.h
 CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/noncopyable.h

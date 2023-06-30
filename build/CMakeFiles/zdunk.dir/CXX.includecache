@@ -6,42 +6,36 @@
 
 #IncludeRegexTransform: 
 
-/home/zdunk/workspace/zdunking/zdunk/address.cc
-address.h
-/home/zdunk/workspace/zdunking/zdunk/address.h
-log.h
-/home/zdunk/workspace/zdunking/zdunk/log.h
+/home/zdunk/workspace/zdunking/zdunk/bytearray.cc
+bytearray.h
+/home/zdunk/workspace/zdunking/zdunk/bytearray.h
+fstream
+-
 sstream
 -
-netdb.h
+string.h
 -
-ifaddrs.h
+iomanip
 -
-stddef.h
+cmath
 -
 endian.h
 /home/zdunk/workspace/zdunking/zdunk/endian.h
+log.h
+/home/zdunk/workspace/zdunking/zdunk/log.h
 
-/home/zdunk/workspace/zdunking/zdunk/address.h
+/home/zdunk/workspace/zdunking/zdunk/bytearray.h
 memory
 -
 string
+-
+stdint.h
 -
 sys/types.h
 -
 sys/socket.h
 -
-sys/un.h
--
-arpa/inet.h
--
-unistd.h
--
-iostream
--
 vector
--
-map
 -
 
 /home/zdunk/workspace/zdunking/zdunk/endian.h

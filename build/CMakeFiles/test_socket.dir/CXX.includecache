@@ -9,8 +9,10 @@
 /home/zdunk/workspace/zdunking/tests/test_socket.cc
 ../zdunk/pch.h
 /home/zdunk/workspace/zdunking/zdunk/pch.h
-../zdunk/address.h
-/home/zdunk/workspace/zdunking/zdunk/address.h
+../zdunk/iomanager.h
+/home/zdunk/workspace/zdunking/zdunk/iomanager.h
+../zdunk/socket.h
+/home/zdunk/workspace/zdunking/zdunk/socket.h
 
 /home/zdunk/workspace/zdunking/zdunk/address.h
 memory
@@ -64,6 +66,12 @@ functional
 thread.h
 /home/zdunk/workspace/zdunking/zdunk/thread.h
 
+/home/zdunk/workspace/zdunking/zdunk/iomanager.h
+scheduler.h
+/home/zdunk/workspace/zdunking/zdunk/scheduler.h
+timer.h
+/home/zdunk/workspace/zdunking/zdunk/timer.h
+
 /home/zdunk/workspace/zdunking/zdunk/log.h
 string
 -
@@ -114,7 +122,33 @@ macro.h
 fiber.h
 /home/zdunk/workspace/zdunking/zdunk/fiber.h
 
+/home/zdunk/workspace/zdunking/zdunk/scheduler.h
+memory
+-
+vector
+-
+string
+-
+list
+-
+atomic
+-
+fiber.h
+/home/zdunk/workspace/zdunking/zdunk/fiber.h
+thread.h
+/home/zdunk/workspace/zdunking/zdunk/thread.h
+
 /home/zdunk/workspace/zdunking/zdunk/singleton.h
+
+/home/zdunk/workspace/zdunking/zdunk/socket.h
+memory
+-
+netinet/tcp.h
+-
+address.h
+/home/zdunk/workspace/zdunking/zdunk/address.h
+noncopyable.h
+/home/zdunk/workspace/zdunking/zdunk/noncopyable.h
 
 /home/zdunk/workspace/zdunking/zdunk/thread.h
 thread
@@ -129,6 +163,18 @@ semaphore.h
 -
 noncopyable.h
 /home/zdunk/workspace/zdunking/zdunk/noncopyable.h
+
+/home/zdunk/workspace/zdunking/zdunk/timer.h
+memory.h
+-
+set
+-
+vector
+-
+functional
+-
+thread.h
+/home/zdunk/workspace/zdunking/zdunk/thread.h
 
 /home/zdunk/workspace/zdunking/zdunk/utils.h
 stdint.h
