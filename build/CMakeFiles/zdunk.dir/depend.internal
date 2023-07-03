@@ -64,6 +64,30 @@ CMakeFiles/zdunk.dir/zdunk/hook.cc.o
  /home/zdunk/workspace/zdunking/zdunk/thread.h
  /home/zdunk/workspace/zdunking/zdunk/timer.h
  /home/zdunk/workspace/zdunking/zdunk/utils.h
+CMakeFiles/zdunk.dir/zdunk/http/http.cc.o
+ /home/zdunk/workspace/zdunking/zdunk/http/http.cc
+ /home/zdunk/workspace/zdunking/zdunk/http/http.h
+CMakeFiles/zdunk.dir/zdunk/http/http11_parser.rl.cc.o
+ /home/zdunk/workspace/zdunking/zdunk/http/http11_common.h
+ /home/zdunk/workspace/zdunking/zdunk/http/http11_parser.h
+ /home/zdunk/workspace/zdunking/zdunk/http/http11_parser.rl.cc
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o
+ /home/zdunk/workspace/zdunking/zdunk/config.h
+ /home/zdunk/workspace/zdunking/zdunk/http/http.h
+ /home/zdunk/workspace/zdunking/zdunk/http/http11_common.h
+ /home/zdunk/workspace/zdunking/zdunk/http/http11_parser.h
+ /home/zdunk/workspace/zdunking/zdunk/http/http_parser.cc
+ /home/zdunk/workspace/zdunking/zdunk/http/http_parser.h
+ /home/zdunk/workspace/zdunking/zdunk/http/httpclient_parser.h
+ /home/zdunk/workspace/zdunking/zdunk/log.h
+ /home/zdunk/workspace/zdunking/zdunk/noncopyable.h
+ /home/zdunk/workspace/zdunking/zdunk/singleton.h
+ /home/zdunk/workspace/zdunking/zdunk/thread.h
+ /home/zdunk/workspace/zdunking/zdunk/utils.h
+CMakeFiles/zdunk.dir/zdunk/http/httpclient_parser.rl.cc.o
+ /home/zdunk/workspace/zdunking/zdunk/http/http11_common.h
+ /home/zdunk/workspace/zdunking/zdunk/http/httpclient_parser.h
+ /home/zdunk/workspace/zdunking/zdunk/http/httpclient_parser.rl.cc
 CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o
  /home/zdunk/workspace/zdunking/zdunk/fiber.h
  /home/zdunk/workspace/zdunking/zdunk/iomanager.cc
@@ -108,6 +132,21 @@ CMakeFiles/zdunk.dir/zdunk/socket.cc.o
  /home/zdunk/workspace/zdunking/zdunk/singleton.h
  /home/zdunk/workspace/zdunking/zdunk/socket.cc
  /home/zdunk/workspace/zdunking/zdunk/socket.h
+ /home/zdunk/workspace/zdunking/zdunk/thread.h
+ /home/zdunk/workspace/zdunking/zdunk/timer.h
+ /home/zdunk/workspace/zdunking/zdunk/utils.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o
+ /home/zdunk/workspace/zdunking/zdunk/address.h
+ /home/zdunk/workspace/zdunking/zdunk/config.h
+ /home/zdunk/workspace/zdunking/zdunk/fiber.h
+ /home/zdunk/workspace/zdunking/zdunk/iomanager.h
+ /home/zdunk/workspace/zdunking/zdunk/log.h
+ /home/zdunk/workspace/zdunking/zdunk/noncopyable.h
+ /home/zdunk/workspace/zdunking/zdunk/scheduler.h
+ /home/zdunk/workspace/zdunking/zdunk/singleton.h
+ /home/zdunk/workspace/zdunking/zdunk/socket.h
+ /home/zdunk/workspace/zdunking/zdunk/tcp_server.cc
+ /home/zdunk/workspace/zdunking/zdunk/tcp_server.h
  /home/zdunk/workspace/zdunking/zdunk/thread.h
  /home/zdunk/workspace/zdunking/zdunk/timer.h
  /home/zdunk/workspace/zdunking/zdunk/utils.h

@@ -479,6 +479,13 @@ namespace zdunk
         return os;
     }
 
+    std::string Socket::toString() const
+    {
+        std::stringstream ss;
+        dump(ss);
+        return ss.str();
+    }
+
     bool Socket::cancelRead()
     {
         return IOManager::GetThis()->cancelEvent(m_sock, IOManager::READ);
@@ -522,6 +529,11 @@ namespace zdunk
                                 << ", " << m_type << ", " << m_protocol << ") errno="
                                 << errno << " errstr=" << strerror(errno);
         }
+    }
+
+    std::ostream &operator<<(std::ostream &os, const Socket &sock)
+    {
+        return sock.dump(os);
     }
 
 } // namespace zdunk

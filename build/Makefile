@@ -114,6 +114,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named echo_server
+
+# Build rule for target.
+echo_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 echo_server
+.PHONY : echo_server
+
+# fast build rule for target.
+echo_server/fast:
+	$(MAKE) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/build
+.PHONY : echo_server/fast
+
+#=============================================================================
+# Target rules for targets named test_http_parser
+
+# Build rule for target.
+test_http_parser: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_http_parser
+.PHONY : test_http_parser
+
+# fast build rule for target.
+test_http_parser/fast:
+	$(MAKE) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/build
+.PHONY : test_http_parser/fast
+
+#=============================================================================
 # Target rules for targets named test_bytearray
 
 # Build rule for target.
@@ -125,6 +151,19 @@ test_bytearray: cmake_check_build_system
 test_bytearray/fast:
 	$(MAKE) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/build
 .PHONY : test_bytearray/fast
+
+#=============================================================================
+# Target rules for targets named test_http
+
+# Build rule for target.
+test_http: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_http
+.PHONY : test_http
+
+# fast build rule for target.
+test_http/fast:
+	$(MAKE) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/build
+.PHONY : test_http/fast
 
 #=============================================================================
 # Target rules for targets named test
@@ -177,6 +216,19 @@ test_socket: cmake_check_build_system
 test_socket/fast:
 	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/build
 .PHONY : test_socket/fast
+
+#=============================================================================
+# Target rules for targets named test_tcp_server
+
+# Build rule for target.
+test_tcp_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_tcp_server
+.PHONY : test_tcp_server
+
+# fast build rule for target.
+test_tcp_server/fast:
+	$(MAKE) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/build
+.PHONY : test_tcp_server/fast
 
 #=============================================================================
 # Target rules for targets named zdunk
@@ -268,6 +320,33 @@ test_hook: cmake_check_build_system
 test_hook/fast:
 	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
 .PHONY : test_hook/fast
+
+examples/echo_server.o: examples/echo_server.cc.o
+
+.PHONY : examples/echo_server.o
+
+# target to build an object file
+examples/echo_server.cc.o:
+	$(MAKE) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/examples/echo_server.cc.o
+.PHONY : examples/echo_server.cc.o
+
+examples/echo_server.i: examples/echo_server.cc.i
+
+.PHONY : examples/echo_server.i
+
+# target to preprocess a source file
+examples/echo_server.cc.i:
+	$(MAKE) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/examples/echo_server.cc.i
+.PHONY : examples/echo_server.cc.i
+
+examples/echo_server.s: examples/echo_server.cc.s
+
+.PHONY : examples/echo_server.s
+
+# target to generate assembly for a file
+examples/echo_server.cc.s:
+	$(MAKE) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/examples/echo_server.cc.s
+.PHONY : examples/echo_server.cc.s
 
 tests/test.o: tests/test.cc.o
 
@@ -431,6 +510,60 @@ tests/test_hook.cc.s:
 	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.s
 .PHONY : tests/test_hook.cc.s
 
+tests/test_http.o: tests/test_http.cc.o
+
+.PHONY : tests/test_http.o
+
+# target to build an object file
+tests/test_http.cc.o:
+	$(MAKE) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cc.o
+.PHONY : tests/test_http.cc.o
+
+tests/test_http.i: tests/test_http.cc.i
+
+.PHONY : tests/test_http.i
+
+# target to preprocess a source file
+tests/test_http.cc.i:
+	$(MAKE) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cc.i
+.PHONY : tests/test_http.cc.i
+
+tests/test_http.s: tests/test_http.cc.s
+
+.PHONY : tests/test_http.s
+
+# target to generate assembly for a file
+tests/test_http.cc.s:
+	$(MAKE) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cc.s
+.PHONY : tests/test_http.cc.s
+
+tests/test_http_parser.o: tests/test_http_parser.cc.o
+
+.PHONY : tests/test_http_parser.o
+
+# target to build an object file
+tests/test_http_parser.cc.o:
+	$(MAKE) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.o
+.PHONY : tests/test_http_parser.cc.o
+
+tests/test_http_parser.i: tests/test_http_parser.cc.i
+
+.PHONY : tests/test_http_parser.i
+
+# target to preprocess a source file
+tests/test_http_parser.cc.i:
+	$(MAKE) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.i
+.PHONY : tests/test_http_parser.cc.i
+
+tests/test_http_parser.s: tests/test_http_parser.cc.s
+
+.PHONY : tests/test_http_parser.s
+
+# target to generate assembly for a file
+tests/test_http_parser.cc.s:
+	$(MAKE) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.s
+.PHONY : tests/test_http_parser.cc.s
+
 tests/test_iomanager.o: tests/test_iomanager.cc.o
 
 .PHONY : tests/test_iomanager.o
@@ -511,6 +644,33 @@ tests/test_socket.s: tests/test_socket.cc.s
 tests/test_socket.cc.s:
 	$(MAKE) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/tests/test_socket.cc.s
 .PHONY : tests/test_socket.cc.s
+
+tests/test_tcp_server.o: tests/test_tcp_server.cc.o
+
+.PHONY : tests/test_tcp_server.o
+
+# target to build an object file
+tests/test_tcp_server.cc.o:
+	$(MAKE) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cc.o
+.PHONY : tests/test_tcp_server.cc.o
+
+tests/test_tcp_server.i: tests/test_tcp_server.cc.i
+
+.PHONY : tests/test_tcp_server.i
+
+# target to preprocess a source file
+tests/test_tcp_server.cc.i:
+	$(MAKE) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cc.i
+.PHONY : tests/test_tcp_server.cc.i
+
+tests/test_tcp_server.s: tests/test_tcp_server.cc.s
+
+.PHONY : tests/test_tcp_server.s
+
+# target to generate assembly for a file
+tests/test_tcp_server.cc.s:
+	$(MAKE) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cc.s
+.PHONY : tests/test_tcp_server.cc.s
 
 tests/test_thread.o: tests/test_thread.cc.o
 
@@ -728,6 +888,114 @@ zdunk/hook.cc.s:
 	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/hook.cc.s
 .PHONY : zdunk/hook.cc.s
 
+zdunk/http/http.o: zdunk/http/http.cc.o
+
+.PHONY : zdunk/http/http.o
+
+# target to build an object file
+zdunk/http/http.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/http/http.cc.o
+.PHONY : zdunk/http/http.cc.o
+
+zdunk/http/http.i: zdunk/http/http.cc.i
+
+.PHONY : zdunk/http/http.i
+
+# target to preprocess a source file
+zdunk/http/http.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/http/http.cc.i
+.PHONY : zdunk/http/http.cc.i
+
+zdunk/http/http.s: zdunk/http/http.cc.s
+
+.PHONY : zdunk/http/http.s
+
+# target to generate assembly for a file
+zdunk/http/http.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/http/http.cc.s
+.PHONY : zdunk/http/http.cc.s
+
+zdunk/http/http11_parser.rl.o: zdunk/http/http11_parser.rl.cc.o
+
+.PHONY : zdunk/http/http11_parser.rl.o
+
+# target to build an object file
+zdunk/http/http11_parser.rl.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/http/http11_parser.rl.cc.o
+.PHONY : zdunk/http/http11_parser.rl.cc.o
+
+zdunk/http/http11_parser.rl.i: zdunk/http/http11_parser.rl.cc.i
+
+.PHONY : zdunk/http/http11_parser.rl.i
+
+# target to preprocess a source file
+zdunk/http/http11_parser.rl.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/http/http11_parser.rl.cc.i
+.PHONY : zdunk/http/http11_parser.rl.cc.i
+
+zdunk/http/http11_parser.rl.s: zdunk/http/http11_parser.rl.cc.s
+
+.PHONY : zdunk/http/http11_parser.rl.s
+
+# target to generate assembly for a file
+zdunk/http/http11_parser.rl.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/http/http11_parser.rl.cc.s
+.PHONY : zdunk/http/http11_parser.rl.cc.s
+
+zdunk/http/http_parser.o: zdunk/http/http_parser.cc.o
+
+.PHONY : zdunk/http/http_parser.o
+
+# target to build an object file
+zdunk/http/http_parser.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o
+.PHONY : zdunk/http/http_parser.cc.o
+
+zdunk/http/http_parser.i: zdunk/http/http_parser.cc.i
+
+.PHONY : zdunk/http/http_parser.i
+
+# target to preprocess a source file
+zdunk/http/http_parser.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.i
+.PHONY : zdunk/http/http_parser.cc.i
+
+zdunk/http/http_parser.s: zdunk/http/http_parser.cc.s
+
+.PHONY : zdunk/http/http_parser.s
+
+# target to generate assembly for a file
+zdunk/http/http_parser.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.s
+.PHONY : zdunk/http/http_parser.cc.s
+
+zdunk/http/httpclient_parser.rl.o: zdunk/http/httpclient_parser.rl.cc.o
+
+.PHONY : zdunk/http/httpclient_parser.rl.o
+
+# target to build an object file
+zdunk/http/httpclient_parser.rl.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/http/httpclient_parser.rl.cc.o
+.PHONY : zdunk/http/httpclient_parser.rl.cc.o
+
+zdunk/http/httpclient_parser.rl.i: zdunk/http/httpclient_parser.rl.cc.i
+
+.PHONY : zdunk/http/httpclient_parser.rl.i
+
+# target to preprocess a source file
+zdunk/http/httpclient_parser.rl.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/http/httpclient_parser.rl.cc.i
+.PHONY : zdunk/http/httpclient_parser.rl.cc.i
+
+zdunk/http/httpclient_parser.rl.s: zdunk/http/httpclient_parser.rl.cc.s
+
+.PHONY : zdunk/http/httpclient_parser.rl.s
+
+# target to generate assembly for a file
+zdunk/http/httpclient_parser.rl.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/http/httpclient_parser.rl.cc.s
+.PHONY : zdunk/http/httpclient_parser.rl.cc.s
+
 zdunk/iomanager.o: zdunk/iomanager.cc.o
 
 .PHONY : zdunk/iomanager.o
@@ -836,6 +1104,33 @@ zdunk/socket.cc.s:
 	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/socket.cc.s
 .PHONY : zdunk/socket.cc.s
 
+zdunk/tcp_server.o: zdunk/tcp_server.cc.o
+
+.PHONY : zdunk/tcp_server.o
+
+# target to build an object file
+zdunk/tcp_server.cc.o:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o
+.PHONY : zdunk/tcp_server.cc.o
+
+zdunk/tcp_server.i: zdunk/tcp_server.cc.i
+
+.PHONY : zdunk/tcp_server.i
+
+# target to preprocess a source file
+zdunk/tcp_server.cc.i:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.i
+.PHONY : zdunk/tcp_server.cc.i
+
+zdunk/tcp_server.s: zdunk/tcp_server.cc.s
+
+.PHONY : zdunk/tcp_server.s
+
+# target to generate assembly for a file
+zdunk/tcp_server.cc.s:
+	$(MAKE) -f CMakeFiles/zdunk.dir/build.make CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.s
+.PHONY : zdunk/tcp_server.cc.s
+
 zdunk/thread.o: zdunk/thread.cc.o
 
 .PHONY : zdunk/thread.o
@@ -923,13 +1218,17 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... echo_server"
 	@echo "... edit_cache"
+	@echo "... test_http_parser"
 	@echo "... test_bytearray"
+	@echo "... test_http"
 	@echo "... test"
 	@echo "... test_utils"
 	@echo "... rebuild_cache"
 	@echo "... test_thread"
 	@echo "... test_socket"
+	@echo "... test_tcp_server"
 	@echo "... zdunk"
 	@echo "... test_fiber"
 	@echo "... test_scheduler"
@@ -937,6 +1236,9 @@ help:
 	@echo "... test_address"
 	@echo "... test_config"
 	@echo "... test_hook"
+	@echo "... examples/echo_server.o"
+	@echo "... examples/echo_server.i"
+	@echo "... examples/echo_server.s"
 	@echo "... tests/test.o"
 	@echo "... tests/test.i"
 	@echo "... tests/test.s"
@@ -955,6 +1257,12 @@ help:
 	@echo "... tests/test_hook.o"
 	@echo "... tests/test_hook.i"
 	@echo "... tests/test_hook.s"
+	@echo "... tests/test_http.o"
+	@echo "... tests/test_http.i"
+	@echo "... tests/test_http.s"
+	@echo "... tests/test_http_parser.o"
+	@echo "... tests/test_http_parser.i"
+	@echo "... tests/test_http_parser.s"
 	@echo "... tests/test_iomanager.o"
 	@echo "... tests/test_iomanager.i"
 	@echo "... tests/test_iomanager.s"
@@ -964,6 +1272,9 @@ help:
 	@echo "... tests/test_socket.o"
 	@echo "... tests/test_socket.i"
 	@echo "... tests/test_socket.s"
+	@echo "... tests/test_tcp_server.o"
+	@echo "... tests/test_tcp_server.i"
+	@echo "... tests/test_tcp_server.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"
@@ -988,6 +1299,18 @@ help:
 	@echo "... zdunk/hook.o"
 	@echo "... zdunk/hook.i"
 	@echo "... zdunk/hook.s"
+	@echo "... zdunk/http/http.o"
+	@echo "... zdunk/http/http.i"
+	@echo "... zdunk/http/http.s"
+	@echo "... zdunk/http/http11_parser.rl.o"
+	@echo "... zdunk/http/http11_parser.rl.i"
+	@echo "... zdunk/http/http11_parser.rl.s"
+	@echo "... zdunk/http/http_parser.o"
+	@echo "... zdunk/http/http_parser.i"
+	@echo "... zdunk/http/http_parser.s"
+	@echo "... zdunk/http/httpclient_parser.rl.o"
+	@echo "... zdunk/http/httpclient_parser.rl.i"
+	@echo "... zdunk/http/httpclient_parser.rl.s"
 	@echo "... zdunk/iomanager.o"
 	@echo "... zdunk/iomanager.i"
 	@echo "... zdunk/iomanager.s"
@@ -1000,6 +1323,9 @@ help:
 	@echo "... zdunk/socket.o"
 	@echo "... zdunk/socket.i"
 	@echo "... zdunk/socket.s"
+	@echo "... zdunk/tcp_server.o"
+	@echo "... zdunk/tcp_server.i"
+	@echo "... zdunk/tcp_server.s"
 	@echo "... zdunk/thread.o"
 	@echo "... zdunk/thread.i"
 	@echo "... zdunk/thread.s"

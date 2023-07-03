@@ -87,6 +87,8 @@ namespace zdunk
         int getError();
 
         std::ostream &dump(std::ostream &os) const;
+        virtual std::string toString() const;
+
         int getSocket() const { return m_sock; }
 
         bool cancelRead();
@@ -108,4 +110,6 @@ namespace zdunk
         Address::ptr m_localAddress;
         Address::ptr m_remoteAddress;
     };
+
+    std::ostream &operator<<(std::ostream &os, const Socket &sock);
 } // namespace zdunk

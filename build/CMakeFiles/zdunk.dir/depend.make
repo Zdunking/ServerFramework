@@ -64,6 +64,30 @@ CMakeFiles/zdunk.dir/zdunk/hook.cc.o: ../zdunk/thread.h
 CMakeFiles/zdunk.dir/zdunk/hook.cc.o: ../zdunk/timer.h
 CMakeFiles/zdunk.dir/zdunk/hook.cc.o: ../zdunk/utils.h
 
+CMakeFiles/zdunk.dir/zdunk/http/http.cc.o: ../zdunk/http/http.cc
+CMakeFiles/zdunk.dir/zdunk/http/http.cc.o: ../zdunk/http/http.h
+
+CMakeFiles/zdunk.dir/zdunk/http/http11_parser.rl.cc.o: ../zdunk/http/http11_common.h
+CMakeFiles/zdunk.dir/zdunk/http/http11_parser.rl.cc.o: ../zdunk/http/http11_parser.h
+CMakeFiles/zdunk.dir/zdunk/http/http11_parser.rl.cc.o: ../zdunk/http/http11_parser.rl.cc
+
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o: ../zdunk/config.h
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o: ../zdunk/http/http.h
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o: ../zdunk/http/http11_common.h
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o: ../zdunk/http/http11_parser.h
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o: ../zdunk/http/http_parser.cc
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o: ../zdunk/http/http_parser.h
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o: ../zdunk/http/httpclient_parser.h
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o: ../zdunk/log.h
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o: ../zdunk/noncopyable.h
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o: ../zdunk/singleton.h
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o: ../zdunk/thread.h
+CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o: ../zdunk/utils.h
+
+CMakeFiles/zdunk.dir/zdunk/http/httpclient_parser.rl.cc.o: ../zdunk/http/http11_common.h
+CMakeFiles/zdunk.dir/zdunk/http/httpclient_parser.rl.cc.o: ../zdunk/http/httpclient_parser.h
+CMakeFiles/zdunk.dir/zdunk/http/httpclient_parser.rl.cc.o: ../zdunk/http/httpclient_parser.rl.cc
+
 CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o: ../zdunk/fiber.h
 CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o: ../zdunk/iomanager.cc
 CMakeFiles/zdunk.dir/zdunk/iomanager.cc.o: ../zdunk/iomanager.h
@@ -110,6 +134,21 @@ CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/socket.h
 CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/thread.h
 CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/timer.h
 CMakeFiles/zdunk.dir/zdunk/socket.cc.o: ../zdunk/utils.h
+
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/address.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/config.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/fiber.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/iomanager.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/log.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/noncopyable.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/scheduler.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/singleton.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/socket.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/tcp_server.cc
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/tcp_server.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/thread.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/timer.h
+CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o: ../zdunk/utils.h
 
 CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/log.h
 CMakeFiles/zdunk.dir/zdunk/thread.cc.o: ../zdunk/noncopyable.h

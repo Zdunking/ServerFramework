@@ -27,6 +27,11 @@ set(LIB_SRC
     zdunk/address.cc
     zdunk/socket.cc
     zdunk/bytearray.cc
+    zdunk/http/http.cc
+    zdunk/http/http11_parser.rl.cc
+    zdunk/http/httpclient_parser.rl.cc
+    zdunk/http/http_parser.cc
+    zdunk/tcp_server
     )
 
 add_library(zdunk SHARED ${LIB_SRC})
@@ -88,6 +93,22 @@ target_link_libraries(test_socket ${LIB_LIB})
 add_executable(test_bytearray tests/test_bytearray.cc)
 add_dependencies(test_bytearray zdunk)
 target_link_libraries(test_bytearray ${LIB_LIB})
+
+add_executable(test_http tests/test_http.cc)
+add_dependencies(test_http zdunk)
+target_link_libraries(test_http ${LIB_LIB})
+
+add_executable(test_http_parser tests/test_http_parser.cc)
+add_dependencies(test_http_parser zdunk)
+target_link_libraries(test_http_parser ${LIB_LIB})
+
+add_executable(test_tcp_server tests/test_tcp_server.cc)
+add_dependencies(test_tcp_server zdunk)
+target_link_libraries(test_tcp_server ${LIB_LIB})
+
+add_executable(echo_server examples/echo_server.cc)
+add_dependencies(echo_server zdunk)
+target_link_libraries(echo_server ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

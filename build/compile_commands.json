@@ -1,8 +1,23 @@
 [
 {
   "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/echo_server.dir/examples/echo_server.cc.o -c /home/zdunk/workspace/zdunking/examples/echo_server.cc",
+  "file": "/home/zdunk/workspace/zdunking/examples/echo_server.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.o -c /home/zdunk/workspace/zdunking/tests/test_http_parser.cc",
+  "file": "/home/zdunk/workspace/zdunking/tests/test_http_parser.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
   "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.o -c /home/zdunk/workspace/zdunking/tests/test_bytearray.cc",
   "file": "/home/zdunk/workspace/zdunking/tests/test_bytearray.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_http.dir/tests/test_http.cc.o -c /home/zdunk/workspace/zdunking/tests/test_http.cc",
+  "file": "/home/zdunk/workspace/zdunking/tests/test_http.cc"
 },
 {
   "directory": "/home/zdunk/workspace/zdunking/build",
@@ -23,6 +38,11 @@
   "directory": "/home/zdunk/workspace/zdunking/build",
   "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_socket.dir/tests/test_socket.cc.o -c /home/zdunk/workspace/zdunking/tests/test_socket.cc",
   "file": "/home/zdunk/workspace/zdunking/tests/test_socket.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++     -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g   -o CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cc.o -c /home/zdunk/workspace/zdunking/tests/test_tcp_server.cc",
+  "file": "/home/zdunk/workspace/zdunking/tests/test_tcp_server.cc"
 },
 {
   "directory": "/home/zdunk/workspace/zdunking/build",
@@ -88,6 +108,31 @@
   "directory": "/home/zdunk/workspace/zdunking/build",
   "command": "/apps/stone/bin/g++  -Dzdunk_EXPORTS   -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g -fPIC   -o CMakeFiles/zdunk.dir/zdunk/bytearray.cc.o -c /home/zdunk/workspace/zdunking/zdunk/bytearray.cc",
   "file": "/home/zdunk/workspace/zdunking/zdunk/bytearray.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++  -Dzdunk_EXPORTS   -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g -fPIC   -o CMakeFiles/zdunk.dir/zdunk/http/http.cc.o -c /home/zdunk/workspace/zdunking/zdunk/http/http.cc",
+  "file": "/home/zdunk/workspace/zdunking/zdunk/http/http.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++  -Dzdunk_EXPORTS   -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g -fPIC   -o CMakeFiles/zdunk.dir/zdunk/http/http11_parser.rl.cc.o -c /home/zdunk/workspace/zdunking/zdunk/http/http11_parser.rl.cc",
+  "file": "/home/zdunk/workspace/zdunking/zdunk/http/http11_parser.rl.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++  -Dzdunk_EXPORTS   -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g -fPIC   -o CMakeFiles/zdunk.dir/zdunk/http/httpclient_parser.rl.cc.o -c /home/zdunk/workspace/zdunking/zdunk/http/httpclient_parser.rl.cc",
+  "file": "/home/zdunk/workspace/zdunking/zdunk/http/httpclient_parser.rl.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++  -Dzdunk_EXPORTS   -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g -fPIC   -o CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o -c /home/zdunk/workspace/zdunking/zdunk/http/http_parser.cc",
+  "file": "/home/zdunk/workspace/zdunking/zdunk/http/http_parser.cc"
+},
+{
+  "directory": "/home/zdunk/workspace/zdunking/build",
+  "command": "/apps/stone/bin/g++  -Dzdunk_EXPORTS   -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g -fPIC   -o CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o -c /home/zdunk/workspace/zdunking/zdunk/tcp_server.cc",
+  "file": "/home/zdunk/workspace/zdunking/zdunk/tcp_server.cc"
 },
 {
   "directory": "/home/zdunk/workspace/zdunking/build",
