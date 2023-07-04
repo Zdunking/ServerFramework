@@ -294,6 +294,58 @@ CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.s"
 	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zdunk/workspace/zdunking/zdunk/tcp_server.cc -o CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.s
 
+CMakeFiles/zdunk.dir/zdunk/stream.cc.o: CMakeFiles/zdunk.dir/flags.make
+CMakeFiles/zdunk.dir/zdunk/stream.cc.o: ../zdunk/stream.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zdunk/workspace/zdunking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/zdunk.dir/zdunk/stream.cc.o"
+	/apps/stone/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zdunk.dir/zdunk/stream.cc.o -c /home/zdunk/workspace/zdunking/zdunk/stream.cc
+
+CMakeFiles/zdunk.dir/zdunk/stream.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zdunk.dir/zdunk/stream.cc.i"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zdunk/workspace/zdunking/zdunk/stream.cc > CMakeFiles/zdunk.dir/zdunk/stream.cc.i
+
+CMakeFiles/zdunk.dir/zdunk/stream.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zdunk.dir/zdunk/stream.cc.s"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zdunk/workspace/zdunking/zdunk/stream.cc -o CMakeFiles/zdunk.dir/zdunk/stream.cc.s
+
+CMakeFiles/zdunk.dir/zdunk/stream/socket_stream.cc.o: CMakeFiles/zdunk.dir/flags.make
+CMakeFiles/zdunk.dir/zdunk/stream/socket_stream.cc.o: ../zdunk/stream/socket_stream.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zdunk/workspace/zdunking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/zdunk.dir/zdunk/stream/socket_stream.cc.o"
+	/apps/stone/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zdunk.dir/zdunk/stream/socket_stream.cc.o -c /home/zdunk/workspace/zdunking/zdunk/stream/socket_stream.cc
+
+CMakeFiles/zdunk.dir/zdunk/stream/socket_stream.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zdunk.dir/zdunk/stream/socket_stream.cc.i"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zdunk/workspace/zdunking/zdunk/stream/socket_stream.cc > CMakeFiles/zdunk.dir/zdunk/stream/socket_stream.cc.i
+
+CMakeFiles/zdunk.dir/zdunk/stream/socket_stream.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zdunk.dir/zdunk/stream/socket_stream.cc.s"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zdunk/workspace/zdunking/zdunk/stream/socket_stream.cc -o CMakeFiles/zdunk.dir/zdunk/stream/socket_stream.cc.s
+
+CMakeFiles/zdunk.dir/zdunk/http/http_session.cc.o: CMakeFiles/zdunk.dir/flags.make
+CMakeFiles/zdunk.dir/zdunk/http/http_session.cc.o: ../zdunk/http/http_session.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zdunk/workspace/zdunking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/zdunk.dir/zdunk/http/http_session.cc.o"
+	/apps/stone/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zdunk.dir/zdunk/http/http_session.cc.o -c /home/zdunk/workspace/zdunking/zdunk/http/http_session.cc
+
+CMakeFiles/zdunk.dir/zdunk/http/http_session.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zdunk.dir/zdunk/http/http_session.cc.i"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zdunk/workspace/zdunking/zdunk/http/http_session.cc > CMakeFiles/zdunk.dir/zdunk/http/http_session.cc.i
+
+CMakeFiles/zdunk.dir/zdunk/http/http_session.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zdunk.dir/zdunk/http/http_session.cc.s"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zdunk/workspace/zdunking/zdunk/http/http_session.cc -o CMakeFiles/zdunk.dir/zdunk/http/http_session.cc.s
+
+CMakeFiles/zdunk.dir/zdunk/http/http_server.cc.o: CMakeFiles/zdunk.dir/flags.make
+CMakeFiles/zdunk.dir/zdunk/http/http_server.cc.o: ../zdunk/http/http_server.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zdunk/workspace/zdunking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/zdunk.dir/zdunk/http/http_server.cc.o"
+	/apps/stone/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zdunk.dir/zdunk/http/http_server.cc.o -c /home/zdunk/workspace/zdunking/zdunk/http/http_server.cc
+
+CMakeFiles/zdunk.dir/zdunk/http/http_server.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zdunk.dir/zdunk/http/http_server.cc.i"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zdunk/workspace/zdunking/zdunk/http/http_server.cc > CMakeFiles/zdunk.dir/zdunk/http/http_server.cc.i
+
+CMakeFiles/zdunk.dir/zdunk/http/http_server.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zdunk.dir/zdunk/http/http_server.cc.s"
+	/apps/stone/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zdunk/workspace/zdunking/zdunk/http/http_server.cc -o CMakeFiles/zdunk.dir/zdunk/http/http_server.cc.s
+
 # Object files for target zdunk
 zdunk_OBJECTS = \
 "CMakeFiles/zdunk.dir/zdunk/log.cc.o" \
@@ -313,7 +365,11 @@ zdunk_OBJECTS = \
 "CMakeFiles/zdunk.dir/zdunk/http/http11_parser.rl.cc.o" \
 "CMakeFiles/zdunk.dir/zdunk/http/httpclient_parser.rl.cc.o" \
 "CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o" \
-"CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o"
+"CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o" \
+"CMakeFiles/zdunk.dir/zdunk/stream.cc.o" \
+"CMakeFiles/zdunk.dir/zdunk/stream/socket_stream.cc.o" \
+"CMakeFiles/zdunk.dir/zdunk/http/http_session.cc.o" \
+"CMakeFiles/zdunk.dir/zdunk/http/http_server.cc.o"
 
 # External object files for target zdunk
 zdunk_EXTERNAL_OBJECTS =
@@ -336,9 +392,13 @@ zdunk_EXTERNAL_OBJECTS =
 ../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/http/httpclient_parser.rl.cc.o
 ../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/http/http_parser.cc.o
 ../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/tcp_server.cc.o
+../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/stream.cc.o
+../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/stream/socket_stream.cc.o
+../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/http/http_session.cc.o
+../lib/libzdunk.so: CMakeFiles/zdunk.dir/zdunk/http/http_server.cc.o
 ../lib/libzdunk.so: CMakeFiles/zdunk.dir/build.make
 ../lib/libzdunk.so: CMakeFiles/zdunk.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zdunk/workspace/zdunking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX shared library ../lib/libzdunk.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zdunk/workspace/zdunking/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX shared library ../lib/libzdunk.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/zdunk.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

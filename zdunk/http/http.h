@@ -211,6 +211,9 @@ namespace zdunk
             void setFragment(const std::string &v) { m_fragment = v; }
             void setBody(const std::string &v) { m_body = v; }
 
+            bool isClose() const { return m_close; }
+            void setClose(bool v) { m_close = v; }
+
             void setHeaders(MapType v) { m_headers = v; }
             void setParams(MapType v) { m_params = v; }
             void setCookies(MapType v) { m_cookies = v; }
@@ -339,6 +342,9 @@ namespace zdunk
 
             MapType m_headers;
         };
+
+        std::ostream &operator<<(std::ostream &os, const HttpRequest &req);
+        std::ostream &operator<<(std::ostream &os, const HttpResponse &rsp);
 
     } // namespace http
 

@@ -258,17 +258,27 @@ namespace zdunk
             }
             os << "connection: " << (m_close ? "close" : "keep-alive") << "\r\n";
 
-            // if (!m_body.empty())
-            // {
-            //     os << "content-length: " << m_body.size() << "\r\n\r\n"
-            //        << m_body;
-            // }
-            // else
-            // {
-            //     os << m_body;
-            // }
+            if (!m_body.empty())
+            {
+                os << "content-length: " << m_body.size() << "\r\n\r\n"
+                   << m_body;
+            }
+            else
+            {
+                os << m_body;
+            }
 
             return os;
+        }
+
+        std::ostream &operator<<(std::ostream &os, const HttpRequest &req)
+        {
+            return req.dump(os);
+        }
+
+        std::ostream &operator<<(std::ostream &os, const HttpResponse &rsp)
+        {
+            return rsp.dump(os);
         }
 
     } // namespace http

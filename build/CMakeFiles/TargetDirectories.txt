@@ -1,3 +1,4 @@
+/home/zdunk/workspace/zdunking/build/CMakeFiles/test_http_server.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/echo_server.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/edit_cache.dir
 /home/zdunk/workspace/zdunking/build/CMakeFiles/test_http_parser.dir

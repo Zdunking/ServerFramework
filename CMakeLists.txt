@@ -31,7 +31,11 @@ set(LIB_SRC
     zdunk/http/http11_parser.rl.cc
     zdunk/http/httpclient_parser.rl.cc
     zdunk/http/http_parser.cc
-    zdunk/tcp_server
+    zdunk/tcp_server.cc
+    zdunk/stream.cc
+    zdunk/stream/socket_stream.cc
+    zdunk/http/http_session.cc
+    zdunk/http/http_server.cc
     )
 
 add_library(zdunk SHARED ${LIB_SRC})
@@ -47,14 +51,10 @@ set(
 )
 
 add_executable(test tests/test.cc)
-#add_dependencies(test zdunk)
-#target_link_libraries(test zdunk yaml-cpp)
 add_dependencies(test zdunk)
 target_link_libraries(test ${LIB_LIB})
 
 add_executable(test_config tests/test_config.cc)
-#add_dependencies(test_config zdunk)
-#target_link_libraries(test_config zdunk yaml-cpp)
 add_dependencies(test_config zdunk)
 target_link_libraries(test_config ${LIB_LIB})
 
@@ -109,6 +109,10 @@ target_link_libraries(test_tcp_server ${LIB_LIB})
 add_executable(echo_server examples/echo_server.cc)
 add_dependencies(echo_server zdunk)
 target_link_libraries(echo_server ${LIB_LIB})
+
+add_executable(test_http_server tests/test_http_server.cc)
+add_dependencies(test_http_server zdunk)
+target_link_libraries(test_http_server ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
