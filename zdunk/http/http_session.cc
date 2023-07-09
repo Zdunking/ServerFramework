@@ -44,21 +44,24 @@ namespace zdunk
             if (length > 0)
             {
                 std::string body;
-                body.reserve(length);
+                body.resize(length);
 
+                int len = 0;
                 if ((int)length >= offset)
                 {
-                    body.append(data, offset);
+                    memcpy(&body[0], data, offset);
+                    len = offset;
                 }
                 else
                 {
-                    body.append(data, length);
+                    memcpy(&body[0], data, length);
+                    len = length;
                 }
 
                 length -= offset;
                 if (length > 0)
                 {
-                    if (readFixSize(&body[body.size()], length))
+                    if (readFixSize(&body[len], length))
                     {
                         return nullptr;
                     }

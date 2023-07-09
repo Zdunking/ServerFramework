@@ -12,6 +12,12 @@ void run()
     {
         sleep(2);
     }
+    auto sd = server->getServletDisPatch();
+    sd->addServlet("/zdunk/xxx", [](zdunk::http::HttpRequest::ptr req, zdunk::http::HttpResponse::ptr rsp, zdunk::http::HttpSession::ptr session)
+                   { rsp->setBody(req->toString()); return 0; });
+
+    sd->addGlobServlet("/zdunk/*", [](zdunk::http::HttpRequest::ptr req, zdunk::http::HttpResponse::ptr rsp, zdunk::http::HttpSession::ptr session)
+                       { rsp->setBody("Glob: \r\n" + req->toString()); return 0; });
     server->start();
 }
 

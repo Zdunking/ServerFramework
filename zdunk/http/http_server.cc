@@ -11,6 +11,7 @@ namespace zdunk
         HttpServer::HttpServer(bool keepalived /*= false*/, IOManager *woker /* = IOManager::GetThis()*/, IOManager *accept_woker /* = IOManager::GetThis()*/)
             : TcpServer(woker, accept_woker), m_isKeepAlived(keepalived)
         {
+            m_dispatch.reset(new ServletDispatch);
         }
 
         void HttpServer::handleClient(Socket::ptr client)
@@ -24,12 +25,14 @@ namespace zdunk
                     LOG_WARN(g_logger) << "recv http request fail, errno=" << errno << " errstr=" << strerror(errno) << " client" << *client;
                     break;
                 }
+
                 HttpResponse::ptr rsp(new HttpResponse(req->getVersion(), req->isClose() || !m_isKeepAlived));
-                rsp->setBody("hello zdunk");
 
-                // LOG_DEBUG(g_logger) << "request:" << std::endl
-                //                     << *req;
+                m_dispatch->handle(req, rsp, session);
 
+                // rsp->setBody("hello zdunk");
+                LOG_DEBUG(g_logger) << "request:" << std::endl
+                                    << *req;
                 // LOG_DEBUG(g_logger) << "response:" << std::endl
                 //                     << *rsp;
 

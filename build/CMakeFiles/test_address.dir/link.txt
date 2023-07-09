@@ -1,1 +1,0 @@
-/apps/stone/bin/g++   -rdynamic -O3 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -g  -rdynamic CMakeFiles/test_address.dir/tests/test_address.cc.o  -o ../bin/test_address  -Wl,-rpath,/home/zdunk/workspace/zdunking/lib ../lib/libzdunk.so -lpthread -ldl /usr/local/lib/libyaml-cpp.a 

@@ -28,3 +28,13 @@ stamp-h1
 *.pc
 depcomp
 *.xcodeproj
+.cmake
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+lib/*
+bin/*
+!bin/conf
+!bin/orm_conf
+.vscode

@@ -35,8 +35,12 @@ set(LIB_SRC
     zdunk/stream.cc
     zdunk/stream/socket_stream.cc
     zdunk/http/http_session.cc
+    zdunk/http/http_connection.cc
     zdunk/http/http_server.cc
+    zdunk/http/servlet.cc
+    zdunk/uri.rl.cc
     )
+
 
 add_library(zdunk SHARED ${LIB_SRC})
 #add_library(zdunk_static STATIC ${LIB_SRC})
@@ -113,6 +117,14 @@ target_link_libraries(echo_server ${LIB_LIB})
 add_executable(test_http_server tests/test_http_server.cc)
 add_dependencies(test_http_server zdunk)
 target_link_libraries(test_http_server ${LIB_LIB})
+
+add_executable(test_http_connection tests/test_http_connection.cc)
+add_dependencies(test_http_connection zdunk)
+target_link_libraries(test_http_connection ${LIB_LIB})
+
+add_executable(test_uri tests/test_uri.cc)
+add_dependencies(test_uri zdunk)
+target_link_libraries(test_uri ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
