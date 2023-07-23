@@ -11,7 +11,7 @@ namespace zdunk
         {
         public:
             typedef std::shared_ptr<HttpServer> ptr;
-            HttpServer(bool keepalived = false, zdunk::IOManager *woker = zdunk::IOManager::GetThis(), zdunk::IOManager *accept_woker = zdunk::IOManager::GetThis());
+            HttpServer(bool keepalive = false, IOManager *worker = IOManager::GetThis(), IOManager *io_worker = IOManager::GetThis(), IOManager *accept_worker = IOManager::GetThis());
 
             ServletDispatch::ptr getServletDisPatch() const { return m_dispatch; }
             void setServletDisPatch(ServletDispatch::ptr v) { m_dispatch = v; }

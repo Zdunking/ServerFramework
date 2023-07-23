@@ -365,6 +365,7 @@ namespace zdunk
     {
     public:
         typedef std::map<std::string, ConfigVarBase::ptr> ConfigVarMap;
+        typedef RWMutex RWMutexType;
 
         Config();
 
@@ -411,11 +412,20 @@ namespace zdunk
 
         static ConfigVarBase::ptr LookupBase(const std::string &name);
 
+        static void LoadFromConfDir(const std::string &path, bool force = false);
+        static void Visit(std::function<void(ConfigVarBase::ptr)> cb);
+
     private:
         static ConfigVarMap &GetDatas()
         {
             static ConfigVarMap s_datas;
             return s_datas;
+        }
+
+        static RWMutexType &GetMutex()
+        {
+            static RWMutexType s_mutex;
+            return s_mutex;
         }
     };
 

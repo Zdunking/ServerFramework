@@ -4,7 +4,9 @@
 #include <memory>
 #include <pthread.h>
 #include <semaphore.h>
+#include <list>
 #include "noncopyable.h"
+#include "fiber.h"
 
 namespace zdunk
 {
@@ -218,6 +220,74 @@ namespace zdunk
         void rdlock() {}
         void wrlock() {}
         void unlock() {}
+    };
+
+    /**
+     * @brief 自旋锁
+     */
+    class Spinlock : Noncopyable
+    {
+    public:
+        /// 局部锁
+        typedef ScopeLockImpl<Spinlock> Lock;
+
+        /**
+         * @brief 构造函数
+         */
+        Spinlock()
+        {
+            pthread_spin_init(&m_mutex, 0);
+        }
+
+        /**
+         * @brief 析构函数
+         */
+        ~Spinlock()
+        {
+            pthread_spin_destroy(&m_mutex);
+        }
+
+        /**
+         * @brief 上锁
+         */
+        void lock()
+        {
+            pthread_spin_lock(&m_mutex);
+        }
+
+        /**
+         * @brief 解锁
+         */
+        void unlock()
+        {
+            pthread_spin_unlock(&m_mutex);
+        }
+
+    private:
+        /// 自旋锁
+        pthread_spinlock_t m_mutex;
+    };
+
+    class Scheduler;
+    class FiberSemaphore : Noncopyable
+    {
+    public:
+        typedef Spinlock MutexType;
+
+        FiberSemaphore(size_t initial_concurrency = 0);
+        ~FiberSemaphore();
+
+        bool tryWait();
+        void wait();
+        void notify();
+
+        size_t getConcurrency() const { return m_concurrency; }
+        void reset() { m_concurrency = 0; }
+
+    private:
+        MutexType m_mutex;
+        std::list<std::pair<Scheduler *, Fiber::ptr>> m_waiters;
+        size_t m_concurrency;
     };
 
     class Thread

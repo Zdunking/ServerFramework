@@ -1,15 +1,13 @@
 logs:
-  - name: root
-    level: info
-    formatter: "%d%T%m%n"
-    appender:
-      - type: FileAppender
-        path: test.log
-      - type: StdoutAppender
-  - name: system
-    level: debug
-    formatter: "%d%T%m%n"
-    appender:
-      - type: FileAppender
-        path: test.log
-      - type: StdoutAppender
+    - name: root
+      level: info
+      appenders:
+          - type: FileLogAppender
+            file: /apps/logs/zdunk/root.txt
+          - type: StdoutLogAppender
+    - name: system
+      level: info
+      appenders:
+          - type: FileLogAppender
+            file: /apps/logs/zdunk/system.txt
+          - type: StdoutLogAppender

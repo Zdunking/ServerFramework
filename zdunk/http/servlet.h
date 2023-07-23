@@ -1,4 +1,5 @@
 #pragma once
+#include <cxxabi.h>
 #include <memory>
 #include <functional>
 #include <string>
@@ -7,6 +8,7 @@
 #include "http.h"
 #include "http_session.h"
 #include "../thread.h"
+#include "../utils.h"
 
 namespace zdunk
 {
@@ -39,6 +41,59 @@ namespace zdunk
 
         private:
             callback m_cb;
+        };
+
+        class IServletCreator
+        {
+        public:
+            typedef std::shared_ptr<IServletCreator> ptr;
+            virtual ~IServletCreator() {}
+            virtual Servlet::ptr get() const = 0;
+            virtual std::string getName() const = 0;
+        };
+
+        class HoldServletCreator : public IServletCreator
+        {
+        public:
+            typedef std::shared_ptr<HoldServletCreator> ptr;
+            HoldServletCreator(Servlet::ptr slt)
+                : m_servlet(slt)
+            {
+            }
+
+            Servlet::ptr get() const override
+            {
+                return m_servlet;
+            }
+
+            std::string getName() const override
+            {
+                return m_servlet->getName();
+            }
+
+        private:
+            Servlet::ptr m_servlet;
+        };
+
+        template <class T>
+        class ServletCreator : public IServletCreator
+        {
+        public:
+            typedef std::shared_ptr<ServletCreator> ptr;
+
+            ServletCreator()
+            {
+            }
+
+            Servlet::ptr get() const override
+            {
+                return Servlet::ptr(new T);
+            }
+
+            std::string getName() const override
+            {
+                return TypeToName<T>();
+            }
         };
 
         class ServletDispatch : public Servlet

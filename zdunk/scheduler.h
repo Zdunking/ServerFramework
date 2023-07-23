@@ -4,8 +4,8 @@
 #include <string>
 #include <list>
 #include <atomic>
-#include "fiber.h"
 #include "thread.h"
+#include "fiber.h"
 
 namespace zdunk
 {
@@ -57,6 +57,9 @@ namespace zdunk
                 tickle();
             }
         }
+
+        void switchTo(int thread = -1);
+        std::ostream &dump(std::ostream &os);
 
     protected:
         virtual void tickle();

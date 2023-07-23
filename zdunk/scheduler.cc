@@ -272,4 +272,38 @@ namespace zdunk
         }
     }
 
+    void Scheduler::switchTo(int thread)
+    {
+        ZDUNK_ASSERT(Scheduler::GetThis() != nullptr);
+        if (Scheduler::GetThis() == this)
+        {
+            if (thread == -1 || thread == zdunk::GetThreadId())
+            {
+                return;
+            }
+        }
+        schedule(Fiber::GetThis(), thread);
+        Fiber::YieldToHold();
+    }
+
+    std::ostream &Scheduler::dump(std::ostream &os)
+    {
+        os << "[Scheduler name=" << m_name
+           << " size=" << m_threadCount
+           << " active_count=" << m_activeThreadCount
+           << " idle_count=" << m_idleThreadCount
+           << " stopping=" << m_stopping
+           << " ]" << std::endl
+           << "    ";
+        for (size_t i = 0; i < m_threadIds.size(); ++i)
+        {
+            if (i)
+            {
+                os << ", ";
+            }
+            os << m_threadIds[i];
+        }
+        return os;
+    }
+
 }

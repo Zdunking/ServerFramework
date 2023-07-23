@@ -8,8 +8,8 @@ namespace zdunk
     static zdunk::ConfigVar<uint64_t>::ptr g_tcp_eserver_read_timeout =
         zdunk::Config::Lookup("tcp_server.read_timeout", (uint64_t)(60 * 1000 * 2), "tcp server read timeout");
 
-    TcpServer::TcpServer(IOManager *woker /*= IOManager::GetThis()*/, IOManager *awoker /*= IOManager::GetThis()*/)
-        : m_woker(woker), m_acceptWorker(awoker),
+    TcpServer::TcpServer(IOManager *woker /*= IOManager::GetThis()*/, IOManager *io_worker /* = IOManager::GetThis()*/, IOManager *awoker /*= IOManager::GetThis()*/)
+        : m_worker(woker), m_ioWorker(io_worker), m_acceptWorker(awoker),
           m_recvTimeout(g_tcp_eserver_read_timeout->getValue()), m_name("zdunk/1.0.0"), m_isStop(true)
     {
     }
@@ -23,7 +23,12 @@ namespace zdunk
         m_socks.clear();
     }
 
-    bool TcpServer::bind(Address::ptr addr)
+    void TcpServer::setConf(const TcpServerConf &v)
+    {
+        m_conf.reset(new TcpServerConf(v));
+    }
+
+    bool TcpServer::bind(Address::ptr addr, bool ssl /*= false*/)
     {
         std::vector<Address::ptr> addrs;
         std::vector<Address::ptr> fails;
@@ -31,11 +36,12 @@ namespace zdunk
         return bind(addrs, fails);
     }
 
-    bool TcpServer::bind(std::vector<Address::ptr> addrs, std::vector<Address::ptr> &fails)
+    bool TcpServer::bind(std::vector<Address::ptr> addrs, std::vector<Address::ptr> &fails, bool ssl /*= false*/)
     {
+        m_ssl = ssl;
         for (auto addr : addrs)
         {
-            Socket::ptr sock = Socket::CreateTCP(addr);
+            Socket::ptr sock = ssl ? SSLSocket::CreateTCP(addr) : Socket::CreateTCP(addr);
             if (!sock->bind(addr))
             {
                 LOG_ERROR(g_logger) << "bind failed errno=" << errno << " errstr=" << strerror(errno)
@@ -77,7 +83,7 @@ namespace zdunk
             if (client)
             {
                 client->setRecvTimeout(m_recvTimeout);
-                m_woker->schedule(std::bind(&TcpServer::handleClient, shared_from_this(), client));
+                m_ioWorker->schedule(std::bind(&TcpServer::handleClient, shared_from_this(), client));
             }
             else
             {
@@ -116,6 +122,38 @@ namespace zdunk
     void TcpServer::handleClient(Socket::ptr client)
     {
         LOG_INFO(g_logger) << "handleClient: " << *client;
+    }
+
+    bool TcpServer::loadCertificates(const std::string &cert_file, const std::string &key_file)
+    {
+        for (auto &i : m_socks)
+        {
+            auto ssl_socket = std::dynamic_pointer_cast<SSLSocket>(i);
+            if (ssl_socket)
+            {
+                if (!ssl_socket->loadCertificates(cert_file, key_file))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    std::string TcpServer::toString(const std::string &prefix)
+    {
+        std::stringstream ss;
+        ss << prefix << "[type=" << m_type
+           << " name=" << m_name << " ssl=" << m_ssl
+           << " worker=" << (m_worker ? m_worker->getName() : "")
+           << " accept=" << (m_acceptWorker ? m_acceptWorker->getName() : "")
+           << " recv_timeout=" << m_recvTimeout << "]" << std::endl;
+        std::string pfx = prefix.empty() ? "    " : prefix;
+        for (auto &i : m_socks)
+        {
+            ss << pfx << pfx << *i << std::endl;
+        }
+        return ss.str();
     }
 
 } // namespace zdunk

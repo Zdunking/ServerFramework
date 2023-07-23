@@ -8,8 +8,8 @@ namespace zdunk
 
         static zdunk::Logger::ptr g_logger = LOG_NAME("system");
 
-        HttpServer::HttpServer(bool keepalived /*= false*/, IOManager *woker /* = IOManager::GetThis()*/, IOManager *accept_woker /* = IOManager::GetThis()*/)
-            : TcpServer(woker, accept_woker), m_isKeepAlived(keepalived)
+        HttpServer::HttpServer(bool keepalive /* = false*/, IOManager *worker /* = IOManager::GetThis()*/, IOManager *io_worker /* = IOManager::GetThis()*/, IOManager *accept_worker /* = IOManager::GetThis()*/)
+            : TcpServer(worker, io_worker, accept_worker), m_isKeepAlived(keepalive)
         {
             m_dispatch.reset(new ServletDispatch);
         }
